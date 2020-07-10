@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1594364698 source:d:\pj_02_pg\20200619_cpp_code_sample\cpp_39_ptrstr\main.cpp
+	<iostream>
+	<cstring>
+
