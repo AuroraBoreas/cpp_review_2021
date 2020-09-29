@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1601368322 source:d:\reference_01_code\c++\cpp_04_completeguide\src_code\chapter-01-fundamentals\exercise01_sqrt\main.cpp
+	<iostream>
+	<cmath>
+

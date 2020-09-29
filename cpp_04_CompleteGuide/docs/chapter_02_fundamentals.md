@@ -75,3 +75,18 @@ Table: C++ keywords
 | continue   | friend       | register         | true        |          |
 | default    | goto         | reinterpret_cast | try         |          |
 | delete     | if           | return           | typedel     |          |
+
+
+## how to declare and initialie variable in C++
+
+two approaches as follows.
+
+```C++
+
+type_name variable_name = value;
+
+// or 
+
+type_name variable_name(value);
+
+```
