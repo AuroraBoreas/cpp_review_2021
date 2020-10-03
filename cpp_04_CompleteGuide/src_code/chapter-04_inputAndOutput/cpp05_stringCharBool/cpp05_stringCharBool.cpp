@@ -1,13 +1,12 @@
-#include <iostream>
-#include <iomanip>
+#include <iostream> // Declarations of cin, cout,...
+#include <iomanip> // Manipulator setw()
 #include <string>
-
 using namespace std;
 
 int main()
 {
     //
-    int number = ' ',
+    int number = ' ';
     cout << "The whitespace code is as follows: "
          << number << endl;
     char ch;
