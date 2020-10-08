@@ -82,3 +82,91 @@ table: manipulators for output in fields
 | left                  | left-align output in fields         |
 | right                 | right-align output in fields        |
 | internal              | left-align output of sign and ..    |
+
+
+## input
+
+when reading from standard input, *cin* is buffered by lines.
+
+keyboard input is thus NOT read until confirmed by pressing the **<Return>** key.
+
+this allows the user to press the backspace key and correct any input errors,
+provided the return key has not been process.
+
+`>>` operator will normally read the next input field, convert the input by reference to the type of the supplied variable, and write the result to the variable. 
+
+```
+any white space characters(such as blanks, tabs, and newlines) are ignored by default
+```
+
+for example,
+
+```c++
+
+char ch;
+cin >> ch;
+
+// press the following keys
+// <Return> <tab> <blank> <X> <return>
+cout << ch;
+// X
+```
+
+for example,
+
+```c++
+
+int i;
+cin >> i;
+
+// press 123FF<Return> stores the decimal value 123 in the variable i.
+// however, the characters that follow, FF and the newline character, remain
+// in the input buffer and will be read first during the next read operation.
+
+cout << i;
+// 123
+
+```
+
+for example,
+
+```c++
+
+string city;
+cin >> city;
+
+// when reading strings, only one word is read 
+// since the first whitespace character will begin a new input field
+// input: Lao Kai
+cout << city;
+
+// Lao
+
+```
+
+## format input
+
+inputting integers
+
+```c++
+
+int n;
+
+// u can use hex, oct, and dec manipulators to stipulate that any character
+// sequence input is to processed as a hexadecimal, octal,  or decimal number.
+cin >> oct >> n;
+// input: 10
+cout << n;
+// 8
+
+// enabling input such as f0a or -F7
+cin >> hex >> n;
+
+```
+
+inputting floating-point numbers
+
+```c++
+
+
+```
