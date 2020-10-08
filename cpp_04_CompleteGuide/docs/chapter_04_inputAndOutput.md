@@ -146,7 +146,7 @@ cout << city;
 
 ## format input
 
-inputting integers
+### inputting integers
 
 ```c++
 
@@ -164,9 +164,92 @@ cin >> hex >> n;
 
 ```
 
-inputting floating-point numbers
+### inputting floating-point numbers
 
 ```c++
 
+dobule x;
+cin >> x;
+
+// input: 123
+// the character input is converted to a double value in this case.
+cout << x;
+
+```
+
+what if the input does not match the type of variable defined?
+
+for example,
+
+```c++
+
+int i, j;
+cin >> i >> j; // exception
+
+// input: 1A5
+// digit 1 will be stored in the variable i.
+// the next input field begins with A.
+// but since a decimal input type is required,
+// the input sequence will not be processed beyond the letter A.
+// if, as in our example, no type conversion is performed, the variable is NOT written to and an internal error flag is raised.
+
+```
+
+it normally makes sense to read numerical values individually, 
+
+and clear the input buffer and any error flags that may have been set after each entry.
+
+
+## reading and writing characters
+
+u can use the methods `cin.get()` and `cout.put()` to read or write single characters.
+
+for example
+
+```c++
+
+char ch;
+cin.get(ch);
+
+// if the character is <whitespace> <blank> <newline> <tab>,
+// it will still be stored in the ch variable.
+
+// to prevent this from happening you can use
+cin >> ch;
+// to read the first non-whitespace character.
+
+
+// cin.get() can also be called w/o any arguments. 
+// in this case, cin.get() returns the character code of type int.
+int c = cin.get();
+
+```
+
+for example
+
+```c++
+
+cout.put('A'); // equivalent to cout << 'A';
+
+```
+
+## read a line
+
+| read input operator | functionality                   |
+|---------------------|---------------------------------|
+| cin.get();          | read any one character          |
+| cin >> var;         | read one word                   |
+| getline(cin, text); | read a whole line of text       |
+
+for example,
+
+```c++
+
+// u can specify a different delimiting character by passing the character to the getline() function as a third argument.
+
+getline(cin, s, '.')
+
+// NOTE: the delimiter character is read, but NOT stored in the string.
+// any characters subsequent to the first period will remain in the input buffer of the stream
 
 ```
