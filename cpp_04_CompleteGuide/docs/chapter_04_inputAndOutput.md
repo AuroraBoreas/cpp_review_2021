@@ -219,7 +219,7 @@ cin >> ch;
 // to read the first non-whitespace character.
 
 
-// cin.get() can also be called w/o any arguments. 
+// cin.get() can also be called w/o any arguments.
 // in this case, cin.get() returns the character code of type int.
 int c = cin.get();
 
