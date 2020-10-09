@@ -84,3 +84,81 @@ do
 } while(expression);
 
 ```
+
+### why it works? `if(cin >> x)`
+
+```c++
+
+int x;
+if(cin >> x){};
+
+/*
+explanation:
+
+cin is an object of istream class.
+x is disclaimed as int type.
+
+cin returns the reference of input word(delimiter is \0, aka null), ignores whitespace characters.
+
+cin reads any word(delimiter is \0), then it converts the word to the type of the variable to store.
+
+if converts successfully, conversion stat is true.
+if failed, conversion stat is false.
+
+conclusion:
+(cin >> x)
+has ability to read keyboard input by word (delimiter \0);
+has ability to proceed with conversion to the type of x;
+has ability to return conversion stat.
+*/
+```
+
+## conditional operator
+
+```c++
+
+//syntax
+expression? expression1 : expression2
+```
+
+## switch-case
+
+switch-case syntax
+
+```c++
+
+switch(expression)
+{
+    case const1: [ statement ]
+                 [ break; ]
+    case const2: [ statement ]
+                 [ break; ]
+    .
+    .
+    .
+    [ default: statement ]
+}
+
+```
+
+example
+
+```c++
+
+int command = menu(); // the function menu() reads a command
+
+switch(command)
+{
+    case 'a':
+    case 'A':
+                action1();
+                break;
+    case 'b':
+    case 'B':
+                action2();
+                break;
+    default:
+                cout << '\a' << flush; // beep on invalid input
+}
+
+```
