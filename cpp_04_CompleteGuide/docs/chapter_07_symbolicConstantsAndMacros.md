@@ -61,5 +61,63 @@ outer brackets in the definition ensure that even when the macro is used in a co
 | function      | compiled independently to executable; caller prg branches to function; check arg type|
 | inline func   | lambda                                                                               |
 
+## redefining macros
 
+| directives          |   explanation              |
+|---------------------|----------------------------|
+| #define NAME(args)  | define macros              |
+| #undef NAME         | remove macros              |
 
+so, to redefine a macros, u have to #undef it then #define it again.
+
+example as follows
+
+```c++
+#define MIN(a, b) ((a)<(b)? (a) : (b))
+... // here MIN can be called
+#undef MIN
+
+```
+
+## conditional inclusion
+
+syntax:
+
+```c++
+
+#ifdef name
+... // block, which will be compiled if name is defined.
+#else
+...
+#endif
+
+```
+
+a symbol w/o a substitute text is often used to identify header files and avoid multiple inclusion.
+
+sample
+
+```c++
+#ifndef _ARTICLE_
+#define _ARTICLE_
+... // content of the header file
+#endif
+
+```
+
+## case conversion
+
+header files: `ctype.h` and `cctype`
+
+functionality: classify or convert single characters
+
+## filter programs
+
+```c++
+
+while(cin.get(c)) {...}
+
+// or
+while(getline(cin, line)) {...} // getline(cin, line) is true while a line can be read
+
+```
