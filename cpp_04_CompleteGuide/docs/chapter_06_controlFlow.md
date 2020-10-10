@@ -162,3 +162,16 @@ switch(command)
 }
 
 ```
+
+## break
+
+same mechnism as break statement in Python
+
+## continue
+
+same mechnism as continue statement in Python
+
+## goto
+
+same mechnism as goto statement in VB
+
