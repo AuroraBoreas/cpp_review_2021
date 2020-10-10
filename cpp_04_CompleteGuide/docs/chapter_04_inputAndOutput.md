@@ -235,11 +235,11 @@ cout.put('A'); // equivalent to cout << 'A';
 
 ## read a line
 
-| read input operator | functionality                   |
-|---------------------|---------------------------------|
-| cin.get();          | read any one character          |
-| cin >> var;         | read one word                   |
-| getline(cin, text); | read a whole line of text       |
+| read input operator | functionality                                                                    |
+|---------------------|----------------------------------------------------------------------------------|
+| cin.get();          | read any one character                                                           |
+| cin >> var;         | operator reads only one word, ignoring any leading white space                   |
+| getline(cin, text); | read a whole line of text                                                        |
 
 for example,
 
