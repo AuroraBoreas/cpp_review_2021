@@ -10,6 +10,7 @@ int main()
            prompt("Enter a text and terminate"
                   " with a period and return:"),
            line(60, '-'),
+           lime('*', 50),   // exception? no. why? ord('*') == 42, chr(50) == '2'
            text;
 
     cout << header << endl << prompt << endl
@@ -35,7 +36,8 @@ int main()
         }
     }
 
-    cout << line
+    cout << line << endl
+         << lime
          << "\nyour text contains (without periods)"
          << "\n           characters: " << text.size()
          << "\n                words: " << nWord

@@ -106,7 +106,7 @@ string s1("There they go again!"),
 
 s1.replace(6, 4, s2);
 
-// or s1.replace(s1_startposition, s1_endposition, s2, s2_startposition, s2_endposition)
+// or s1.replace(s1_startposition, qty, s2, s2_startposition, qty)
 
 string s1("Here comes Mike!"),
        s2("my love?");
@@ -131,3 +131,15 @@ if(pos != string::npos)
 }
 
 ```
+
+## subscript operator
+
+easy
+
+- using `sting[index]`
+- using `string.at(index)`
+
+| statement         | range check?      |
+|-------------------|-------------------|
+| string[index]     | No                |
+| string.at(index)  | Yes               |
