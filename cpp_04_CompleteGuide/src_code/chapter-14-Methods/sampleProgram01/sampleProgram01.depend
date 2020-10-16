@@ -1,0 +1,14 @@
+# depslib dependency file v1.0
+1602812538 source:d:\reference_01_code\c++\cpp_04_completeguide\src_code\chapter-14-methods\sampleprogram01\account.cpp
+	"account.h"
+	<iostream>
+	<iomanip>
+	<string>
+
+1602812009 d:\reference_01_code\c++\cpp_04_completeguide\src_code\chapter-14-methods\sampleprogram01\account.h
+	<string>
+
+1602812504 source:d:\reference_01_code\c++\cpp_04_completeguide\src_code\chapter-14-methods\sampleprogram01\main.cpp
+	<iostream>
+	"account.h"
+
