@@ -93,9 +93,10 @@ class Account
         double balance; // Account balance
 
     public: //Public interface:
-        bool init( const string&, unsigned long, double);
+        bool init(const string&, unsigned long, double);
         void display();
 };
+
 #endif // _ACCOUNT_
 
 ```
@@ -140,8 +141,8 @@ void Account::display()
 {
     cout << fixed << setprecision(2)
          << "--------------------------------------\n"
-         << "Account holder:    " << name   << '\n'
-         << "Account number:    " << nr     << '\n'
+         << "Account holder:    " << name    << '\n'
+         << "Account number:    " << nr      << '\n'
          << "Account balance:   " << balance << '\n'
          << "--------------------------------------\n"
          << endl;
@@ -177,6 +178,12 @@ a class is normally defined in several source files.
 - place the class definition in a `header file`, for example, put `Account` class in `account.h`
 - methods MUST ALWAYS be defined within a `source file`, for example, put methods in `account.cpp`
 - (right-click project and add `source file` account.cpp when using **codeblock** before compilation)
+
+alternative
+
+- place the class definition, implementation of methods in `header file` works too.
+
+check OOD's class creation principles: SOLID, choose what u want?
 
 the source code of the application program, for example, the code contain the funtion `main`, is independent of the class and can be stored in separate source files. separate classes from application programs facilitates `re-use` of classes.
 

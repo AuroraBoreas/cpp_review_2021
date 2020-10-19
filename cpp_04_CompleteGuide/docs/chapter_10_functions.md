@@ -75,7 +75,7 @@ inline int max(int x, int y) { return (x >= y ? x : y); }
 
 the program code will expand each time an `inline` function is called.
 
-this is why `inline` functions should contain no more than one or two instructions.
+this is why `inline` functions should **contain no more than one or two instructions**.
 
 if an `inline` function contains too many instructions, the compiler may ignore the inline keyword and issue a warning.
 
@@ -89,7 +89,9 @@ it therefore makes sense to define inline functions in header files, in contrast
 
 ## inline functions and macros
 
-inline functions are an alternative to macros with parameters.
+(P201)
+
+**inline functions are an alternative to macros with parameters**.
 
 with a macro is called, the preprocessor simply replaces a block of text.
 

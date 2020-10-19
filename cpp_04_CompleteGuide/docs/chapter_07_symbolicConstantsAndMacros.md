@@ -55,11 +55,11 @@ outer brackets in the definition ensure that even when the macro is used in a co
 */
 ```
 
-| item          | mechanism                                                                            |
-|---------------|--------------------------------------------------------------------------------------|
-| macro         | visible to compiler; inflatable in runtime; no check arg types                       |
-| function      | compiled independently to executable; caller prg branches to function; check arg type|
-| inline func   | lambda                                                                               |
+| item          | mechanism                                                                             |
+|---------------|---------------------------------------------------------------------------------------|
+| macro         | visible to compiler; inflatable in runtime; no check arg types                        |
+| function      | compiled independently to executable; caller prg branches to function; check arg type |
+| inline func   | lambda? no. just using an `inline` flag to mark up a function is within main program  |
 
 ## redefining macros
 
