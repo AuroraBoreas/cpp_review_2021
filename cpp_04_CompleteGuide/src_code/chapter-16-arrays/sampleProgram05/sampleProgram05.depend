@@ -1,0 +1,10 @@
+# depslib dependency file v1.0
+1603204083 source:d:\win-mac-share\cpp_2020\cpp_04_completeguide\chapter-16-arrays\sampleprogram05\main.cpp
+	<stdlib.h>
+	<ctime>
+	<iostream>
+	"telList.h"
+
+1603203228 d:\win-mac-share\cpp_2020\cpp_04_completeguide\chapter-16-arrays\sampleprogram05\tellist.h
+	<string>
+

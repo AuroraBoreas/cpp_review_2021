@@ -1,0 +1,21 @@
+# depslib dependency file v1.0
+1603201843 source:d:\win-mac-share\cpp_2020\cpp_04_completeguide\chapter-16-arrays\reviewclass\main.cpp
+	<iostream>
+	"daytime.h"
+	"result.h"
+
+1603200694 d:\win-mac-share\cpp_2020\cpp_04_completeguide\chapter-16-arrays\reviewclass\daytime.h
+
+1603190776 source:d:\win-mac-share\cpp_2020\cpp_04_completeguide\chapter-16-arrays\reviewclass\daytime.cpp
+	"daytime.h"
+	<iostream>
+
+1603201417 d:\win-mac-share\cpp_2020\cpp_04_completeguide\chapter-16-arrays\reviewclass\result.h
+	"daytime.h"
+
+1603201782 source:d:\win-mac-share\cpp_2020\cpp_04_completeguide\chapter-16-arrays\reviewclass\result.cpp
+	"daytime.h"
+	"result.h"
+	<iostream>
+	<iomanip>
+
