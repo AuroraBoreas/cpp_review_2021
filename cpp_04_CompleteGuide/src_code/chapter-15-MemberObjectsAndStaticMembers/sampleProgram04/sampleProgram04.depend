@@ -1,0 +1,21 @@
+# depslib dependency file v1.0
+1603163014 source:d:\reference_01_code\c++\cpp_04_completeguide\src_code\chapter-15-memberobjectsandstaticmembers\sampleprogram04\daytime.cpp
+	<iostream>
+	"daytime.h"
+
+1603162845 d:\reference_01_code\c++\cpp_04_completeguide\src_code\chapter-15-memberobjectsandstaticmembers\sampleprogram04\daytime.h
+
+1603164090 source:d:\reference_01_code\c++\cpp_04_completeguide\src_code\chapter-15-memberobjectsandstaticmembers\sampleprogram04\main.cpp
+	<iostream>
+	"daytime.h"
+	"result4.h"
+
+1603164191 d:\reference_01_code\c++\cpp_04_completeguide\src_code\chapter-15-memberobjectsandstaticmembers\sampleprogram04\result4.h
+	<iostream>
+	"daytime.h"
+
+1603164209 source:d:\reference_01_code\c++\cpp_04_completeguide\src_code\chapter-15-memberobjectsandstaticmembers\sampleprogram04\result4.cpp
+	"result4.h"
+	<iostream>
+	<iomanip>
+
