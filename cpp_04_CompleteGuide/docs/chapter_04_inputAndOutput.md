@@ -64,7 +64,7 @@ table: methods for precision
 
 ## output in fields
 
-table: element functions for output in fields
+Table: element functions for output in fields
 
 | method                | effects                             |
 |-----------------------|-------------------------------------|
@@ -73,7 +73,7 @@ table: element functions for output in fields
 | int fill() const;     | return the fill character used      |
 | int fill(int ch);     | sets the fill character to ch       |
 
-table: manipulators for output in fields
+Table: manipulators for output in fields
 
 | method                | effects                             |
 |-----------------------|-------------------------------------|

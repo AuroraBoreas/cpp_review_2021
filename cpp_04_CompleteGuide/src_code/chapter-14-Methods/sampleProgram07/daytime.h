@@ -24,7 +24,7 @@ class DayTime
             if(!setTime(h, m, s))
                 hour = minute = second = 0; // set parameters to 0 if illegal
             cout << "object addr: " << this << endl;
-            //cout << "this addr:   " << &this << endl;
+            //cout << "this addr:   " << &this << endl; // exception. why can't I get the address of this?
         }
 
         ~DayTime() {};
@@ -47,7 +47,7 @@ class DayTime
                 return false;
         }
 
-        int getHour() const { return hour; }
+        int getHour()   const { return hour; }
         int getMinute() const { return minute; }
         int getSecond() const { return second; }
 
@@ -62,11 +62,27 @@ class DayTime
         }
 
         void repr(void) const;
+
+        void swap(DayTime& t);
 };
 
 inline void DayTime::repr() const
 {
     cout << hour << ":" << minute << ":" << second << endl;
+}
+
+inline void DayTime::swap(DayTime& t)
+{
+    // using this in implementation out of class definition works ..
+    // DayTime temp(t); t = *this; *this = temp;
+    // or
+    // this is the memory address of the current object
+    // temp is also the address of the current object
+    // or
+    // Class_id* const this = &actObj;
+    DayTime temp = t;
+    t = *this;
+    *this = temp; // is equivalent to  &actObj = temp;
 }
 
 #endif // DAYTIME_H_INCLUDED

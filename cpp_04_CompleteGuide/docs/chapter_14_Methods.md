@@ -25,8 +25,8 @@ example:
 
 ```c++
 
-int i(0);
-int i = 0;
+int i(0);   // copy constructor
+int i = 0; // assignment
 
 ```
 
@@ -288,7 +288,7 @@ JavaScript says hi..
 #include <iomanip>
 #include <string>
 
-using namespace std;
+using namespace std; // potential risk: causing namespace contaimination..
 
 class DayTime
 {
@@ -319,7 +319,7 @@ class DayTime
                 return false;
         }
 
-        int getHour() const { return hour; }
+        int getHour()   const { return hour; }
         int getMinute() const { return minute; }
         int getSecond() const { return second; }
 
@@ -353,6 +353,48 @@ given that actObj is the current object of type Class_id, for which a method was
 
 `Class_id* const this = &actObj;`
 
+example:
+
+```c++
+// DayTime class in sampleProgram07 in chapter 14;
+
+// daytime.h
+
+class DayTime
+{
+    private:
+        // data members
+        short h, m, s;
+    public:
+        // public methods
+        DayTime(int h,
+                int m,
+                int s)
+        {
+            this->h = (short)h; this->m = (short)m; this->s = (short)s;
+            cout << "address of the current object: " << this << endl;  // display memory address
+        };
+        ~DayTime(){};
+        // ...
+}
+
+// main.cpp
+
+#include <iostream>
+#include "daytime.h"
+
+using namespace std;
+
+int main()
+{
+    DayTime d1(10, 30, 0);
+    cout << "d1 address(&actObj): " << &d1 << endl; // compile and run: same address appears.
+
+    return 0;
+}
+```
+
+
 The name this is a keyword. As this is a constant pointer, it cannot be redirected.
 
 In other words, the pointer this allows you to access the current object only.
@@ -382,3 +424,95 @@ the `this` pointer is always necessary to access the current object, `*this`, co
 
 (P303)
 
+as u alread know, passing by value copies and object that was passed as an argument to the corresponding parameter of a function being called. the parameter is declared as an object of the class in question.
+
+example:
+
+```c++
+
+bool isLess(DayTime t) const;
+
+```
+
+when the method `isLess()` is called, the copy constructor executes and initializes the created object, `t`, with the argument.
+
+```c++
+
+depart1.isLess(depart2); // copy constructor
+
+```
+
+the function uses a copy of the object `depart2`. the copy is cleaned up when leaving the function, that is, the destructor is called.
+
+## passing by reference
+
+the overhead caused by creating and cleaning up objects can be avoid by passing arguments by reference. in this case, the parameter is declared as a reference or pointer.
+
+example:
+
+```c++
+
+bool isLess(const DayTime& t) const;
+
+```
+
+this new declarationof the `isLess()` is preferable to the previous declaration. effectiveness now:
+
+- there is no formal differencee to the way the method is called
+- `isLess()` no longer creates an internal copy, but accesses directly the object being passed
+- ofc, the object can NOT be changed, as the parameter was declared read-only
+
+## methods vs global functions
+
+ofc, it is possible to write a global function that expects `one` object as an argument. **this rarely makes sense since u would normally expect an object's functionality to be defined in the class itself**.
+
+instead, u would normally define a method for the class and the method would perform the task in hand.
+
+a different situation occurs when operations with at least `two` objects need to be performed, such as comparing or swapping.
+
+the major advantage fo a globally defined function is its symmetry. the objects invovled are peers, since both are passed as arguments. this means that conversion rules are applied to both arguments when the function is called.
+
+## returning objects
+
+a function can use the following ways to return an object as a return_value: it can create a copy of the object, or it can return a reference or pointer to that object.
+
+## returning a copy
+
+returning a copy of an object is **time-consuming** and only makes sense of **small-scale objects**.
+
+## returning a reference
+
+ofc, it is more efficient to return a reference of an object. but be aware that the lifetime of the referenced object MUST NOT be local.
+
+(aesmr: ae is mr)
+
+## using pointers as return values
+
+instead of returning a reference, a function can also return a pointer to an object. in this case, u MUST ensure that the object still exists after exiting the function.
+
+example:
+
+```c++
+
+#include <ctime>
+
+const DayTime* currentTime()
+{
+    static DayTime curTime;
+    time_t sec; time(&sec);
+    struct tm* time = localtime(&sec);
+    curTime.setTime(time->tm_hour,
+                    time->tm_min,
+                    time->tm_sec);
+    return &curTime;
+}
+
+```
+
+Table: return_value
+
+| return_value      | prerequisits         | merit              | attention                                     |
+|-------------------|----------------------|--------------------|-----------------------------------------------|
+| a copy of obj     | no                   | simple             | time-consuming for large-scale obj            |
+| reference of obj  | `static`             | efficient          | must ensure referenced obj exits              |
+| a pointer of obj  | `static`             | efficient          | must ensure referenced obj exits              |

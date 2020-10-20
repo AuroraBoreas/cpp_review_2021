@@ -1,0 +1,12 @@
+# depslib dependency file v1.0
+1603083225 source:d:\reference_01_code\c++\cpp_04_completeguide\src_code\chapter-14-methods\exercise02\main.cpp
+	<iostream>
+	<sstream>
+	<iomanip>
+	"date.h"
+
+1603083801 d:\reference_01_code\c++\cpp_04_completeguide\src_code\chapter-14-methods\exercise02\date.h
+	<iostream>
+	<sstream>
+	<iomanip>
+

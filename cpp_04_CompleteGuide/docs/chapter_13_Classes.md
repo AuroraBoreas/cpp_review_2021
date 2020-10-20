@@ -169,7 +169,7 @@ within a method, *all* the members of a class can be designated directly using t
 
 accessing to private members is only possible within methods belonging to the same class. thus, private members are completely controlled by the class.
 
-defining a class does NOT automatically allocate memory for the data members of that class. to allocate memory, u MUST define an object. when a method is called for a given object, the method can then manipulate the data of the object.
+**defining a class does NOT automatically allocate memory for the data members of that class**. *to allocate memory, u MUST define an object*. when a method is called for a given object, the method can then manipulate the data of the object.
 
 ## modular programming
 

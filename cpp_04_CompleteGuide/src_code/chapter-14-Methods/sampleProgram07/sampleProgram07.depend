@@ -1,9 +1,1 @@
 # depslib dependency file v1.0
-1602836176 source:d:\reference_01_code\c++\cpp_04_completeguide\src_code\chapter-14-methods\sampleprogram07\main.cpp
-	<iostream>
-	"daytime.h"
-
-1602836472 d:\reference_01_code\c++\cpp_04_completeguide\src_code\chapter-14-methods\sampleprogram07\daytime.h
-	<iostream>
-	<string>
-

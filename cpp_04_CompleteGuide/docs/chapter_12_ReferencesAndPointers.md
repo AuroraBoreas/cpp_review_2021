@@ -246,11 +246,31 @@ the indirection operator `*` has high precedence, just like the address operator
 
 ## L-values
 
-an expression that identifies an object in memory is known as an `L-value` in C++.
+(254)
+
+**an expression that identifies an object in memory is known as an `L-value` in C++.**
 
 the `left` operand of the `=` operator MUST ALWAYS deisgnate a memory address.
 
 expressions other than an `L-value` are often referred to as `R-value`.
+
+example:
+
+```c++
+// a variable name is the simplest example of an L-value.
+
+int a = 1;
+
+// a constant or an expression, such as 
+
+a + 1; // is an R-value.
+
+// the indirection operator is one example of an operator that yields L-value.
+// given a pointer variable `p`, both `p` and `*p` are L-value, as `*p` designates the object to which `p` points.
+
+int* p = &a;
+
+```
 
 ## objects as arguments
 
