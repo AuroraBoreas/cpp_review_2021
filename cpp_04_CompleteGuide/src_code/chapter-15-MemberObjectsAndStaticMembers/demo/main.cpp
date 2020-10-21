@@ -1,5 +1,6 @@
 #include <iostream>
 #include <sstream>
+#include <string>
 #include "simple.h"
 #include "daytime.h"
 

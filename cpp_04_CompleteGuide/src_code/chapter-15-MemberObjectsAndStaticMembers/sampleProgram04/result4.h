@@ -14,6 +14,7 @@ private:
     static void setMinMax(double w);
 public:
     Result();
+    Result(double);
     Result(double, const DayTime&);
     Result(double, int, int, int);
     ~Result(){}

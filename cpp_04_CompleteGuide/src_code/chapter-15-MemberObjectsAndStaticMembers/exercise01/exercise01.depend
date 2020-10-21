@@ -1,0 +1,15 @@
+# depslib dependency file v1.0
+1603173661 source:d:\reference_01_code\c++\cpp_04_completeguide\src_code\chapter-15-memberobjectsandstaticmembers\exercise01\main.cpp
+	<iostream>
+	<string>
+	"article.h"
+
+1603174219 d:\reference_01_code\c++\cpp_04_completeguide\src_code\chapter-15-memberobjectsandstaticmembers\exercise01\article.h
+	<iostream>
+	<string>
+
+1603173005 source:d:\reference_01_code\c++\cpp_04_completeguide\src_code\chapter-15-memberobjectsandstaticmembers\exercise01\article.cpp
+	<iostream>
+	<string>
+	"article.h"
+

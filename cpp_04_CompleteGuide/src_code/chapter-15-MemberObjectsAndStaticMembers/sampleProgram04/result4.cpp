@@ -14,6 +14,7 @@ void   Result::setMinMax(double w)
 }
 // definitions of constructors to initialize non-static members;
 Result::Result() : val(0.0) { /* ... */ }
+Result::Result(double w): val(w) { setMinMax(w); }
 Result::Result(double w, const DayTime& z)
 : val(w), time(z)
 {
