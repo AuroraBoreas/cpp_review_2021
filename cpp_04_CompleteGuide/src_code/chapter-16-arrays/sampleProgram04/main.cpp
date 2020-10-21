@@ -1,30 +1,29 @@
-// (351) multidim.cpp
 #include <iostream>
-#include <iomanip>
+#define MAX_ROW 2
+#define MAX_COL 5
 
 using namespace std;
 
-char representative[2][20] = {"Armstrong, Wendy", "Beauty Eve"};
-int articleCount[2][5] = {
-                            {20, 51, 30, 17, 44},
-                            {150, 120, 90, 110, 88}
-                          };
+char names[2][20] = { "Zhang, Liang",
+                      "Hello, world!"
+                    };
+int numbers[2][5] = {
+                      {44, 50, 60, 74, 81},
+                      {32, 64, 120, 69, 22}
+                    };
 
 
 int main()
 {
-    for(int i=0; i < 2; ++i)
+    for(int i=0; i < MAX_ROW; ++i)
     {
-        std::cout << "\nRepresentative: " << representative[i];
-        std::cout << "\nNumber of items sold: ";
-
-        for(int j=0; j < 5; j++)
+        std::cout << names[i] << std::endl;
+        for(int j=0; j < MAX_COL; ++j)
         {
-            std::cout << std::setw(6) << articleCount[i][j];
+            std::cout << numbers[i][j] << std::endl;
         }
-        std::cout << std::endl;
     }
+    std::cout << std::endl;
 
-    std::cout << "sizeof(float) = " << sizeof(float) << std::endl;
     return 0;
 }

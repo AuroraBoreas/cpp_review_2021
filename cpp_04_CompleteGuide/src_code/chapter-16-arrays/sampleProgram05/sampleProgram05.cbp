@@ -32,10 +32,15 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
-		<Unit filename="main.cpp" />
-		<Unit filename="tellist.h">
+		<Unit filename="account.cpp" />
+		<Unit filename="account.h">
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
-		<Extensions />
+		<Unit filename="main.cpp" />
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+		</Extensions>
 	</Project>
 </CodeBlocks_project_file>

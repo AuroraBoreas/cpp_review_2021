@@ -1,6 +1,6 @@
 # depslib dependency file v1.0
-1603201198 source:d:\win-mac-share\cpp_2020\cpp_04_completeguide\chapter-16-arrays\sampleprogram03\main.cpp
+1603182530 source:d:\reference_01_code\c++\cpp_04_completeguide\src_code\chapter-16-arrays\sampleprogram03\main.cpp
 	<iostream>
-	<cstring>
 	<iomanip>
+	<cstring>
 

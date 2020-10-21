@@ -1,43 +1,53 @@
-// (353) telList.h
-
-#include <stdlib.h>
-#include <ctime>
 #include <iostream>
-#include <iomanip>
-#include "telList.h"
-#define MAX_SIZE 10
+#include "account.h"
 
 using namespace std;
 
-void print_array(int* arrPointer);
+Account giro("Lucky, Peter", 1234567, -1200.99);
+Account accountTab[] =
+{
+    Account("Tang, Sarah", 123000, 2500.0),
+    Account("Smith, John", 543001, 0),
+    Account(),
+    Account("Li Zhang", -1, 10000.0),
+    Account("GSN SCY", 1100, 99.01),
+    giro
+};
+
+int cnt = sizeof(accountTab) / sizeof(Account);
 
 int main()
 {
-    int j(0);
-    int arr_numbers[MAX_SIZE];
+    // test Account class
+//    Account a1,
+//            a2("ZL", 1000001, 900.00),
+//            a3(a1);
+//
+//    a1.print(); a2.print();
+//
+//    a3.setName("SCY");
+//    a3.setState(100.00);
+//    a3.print();
+//
+//    a1.setName("");
+//    a1.print();
 
-    do
+    // sample program in book
+    // to set some values:
+    accountTab[1].setState(10000.00);
+    accountTab[2] = Account("Pit, Dave", 727003, 200.00);
+    std::cout << "\nThe accounts in the table: " << std::endl;
+    for(int i=0; i < cnt; ++i)
     {
+        accountTab[i].print();
+        if(i%3 == 2)
+        {
+            std::cout << "\nPress return to go on!\n";
+            std::cin.get();
+        }
+    }
+    std::cout << std::endl;
 
-        /* what does time(NULL) mean?
-        link: [https://stackoverflow.com/questions/7550269/what-is-timenull-in-c]
-        explanation: The call to time(NULL) returns the current calendar time (seconds since Jan 1, 1970)
-        also, time_t timer; time(&time); is equivalent to timer = time(NULL);
-        */
-        std::srand(time(NULL) + j);
-        for(int i=0; i < MAX_SIZE; ++i)
-            arr_numbers[i] = std::rand() % 100;
-
-        // print array
-       print_array(arr_numbers);
-    } while(j++ < MAX_SIZE);
 
     return 0;
-}
-
-void print_array(int* arrPointer)
-{
-    std::cout << "--- generate random sequence ---" << std::endl;
-    for(int i=0; i < MAX_SIZE; ++i)
-        std::cout << std::setw(6) << arrPointer[i] << std::endl;
 }

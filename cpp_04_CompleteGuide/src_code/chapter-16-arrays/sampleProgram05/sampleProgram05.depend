@@ -1,10 +1,14 @@
 # depslib dependency file v1.0
-1603204083 source:d:\win-mac-share\cpp_2020\cpp_04_completeguide\chapter-16-arrays\sampleprogram05\main.cpp
-	<stdlib.h>
-	<ctime>
+1603243995 source:d:\reference_01_code\c++\cpp_04_completeguide\src_code\chapter-16-arrays\sampleprogram05\main.cpp
 	<iostream>
-	"telList.h"
+	"account.h"
 
-1603203228 d:\win-mac-share\cpp_2020\cpp_04_completeguide\chapter-16-arrays\sampleprogram05\tellist.h
+1603244315 d:\reference_01_code\c++\cpp_04_completeguide\src_code\chapter-16-arrays\sampleprogram05\account.h
+	<string>
+
+1603244321 source:d:\reference_01_code\c++\cpp_04_completeguide\src_code\chapter-16-arrays\sampleprogram05\account.cpp
+	"account.h"
+	<iostream>
+	<iomanip>
 	<string>
 

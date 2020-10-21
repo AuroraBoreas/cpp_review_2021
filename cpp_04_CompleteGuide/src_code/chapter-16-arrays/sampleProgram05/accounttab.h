@@ -1,0 +1,6 @@
+#ifndef ACCOUNTTAB_H_INCLUDED
+#define ACCOUNTTAB_H_INCLUDED
+
+class Account
+
+#endif // ACCOUNTTAB_H_INCLUDED

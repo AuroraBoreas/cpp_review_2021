@@ -1,37 +1,30 @@
 #include <iostream>
-#include <cstring>
 #include <iomanip>
+#include <cstring>
 
 using namespace std;
 
-#define TERMINATE_NULL '\0'
-#define NAME_SIZE 20
-#define MSG_SIZE 80
-
-char header[] = "\n    *** c string ***    \n\n";
+char header[] = "\n    ***   C Strings   ***\n\n";
 
 int main()
 {
-    char hello[] = "hello ", name[NAME_SIZE], msg[MSG_SIZE];
-    cout << header;
+    char hello[30] = "hello ", name[20], message[80];
+    cout << header   << "your first name: ";
+    cin  >> setw(20) >> name;
+    //cin  >> name;   // i see..., w/o setw(20) statement, user input overflows array name[20]. program crashes.
 
-    // get name from user input
-    cout << "your name: ";
-    cin >> setw(NAME_SIZE) >> name; // setw(20) constrains overflow
-    strcpy(hello, name);
+    strcat(hello, name);
     cout << hello << endl;
-    cin.sync(); // clear previous user input in IO buffer
+    cin.sync();
 
-    // get msg from user input
-    cout << "what is your message today?" << endl;
-    cin.getline(msg, MSG_SIZE);
-    if(strlen(msg) > 0)
+    cout << "\nwhat is the message for today?" << endl;
+    cin.getline(message, 80); // why not getline(message)? same reason: constrain user input to avoid overflow. or program crashes.
+    if(strlen(message) > 0)
     {
-        for(int i=0; msg[i] != TERMINATE_NULL; ++i)
-            cout << msg[i] << ' ';
+        for(int i = 0; message[i] != '\0'; ++i)
+            cout << message[i] << ' ';
         cout << endl;
     }
-    cout << endl;
 
     return 0;
 }
