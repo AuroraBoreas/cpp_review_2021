@@ -151,6 +151,8 @@ C strings are preferable to the `string` class if only a few operations are need
 
 (349)
 
+### declare class arrays
+
 array elements can also be objects of a class type. the array is know as a `class array` in this case. when u declare an array of this type, u only need to state the type of the array elements.
 
 example:
@@ -166,7 +168,7 @@ Result temperatureTab[24];
 [NOTE]
 `class arrays` can only be defined w/o explicit initialization **if a default constructor exists for the class**.
 
-## explicit initialization
+### explicit initialization
 
 a `class array` is initialized as usual by an `initialization list`. the list contains a constructor call for each array element.
 
@@ -186,3 +188,46 @@ Result temperatureTab[24] =
 
 ```
 
+## multidimensional arrays
+
+(351)
+
+### defining multidimensional arrays
+
+in c++ u can define `multidimensional arrays` with any number of dimensions. the ANSI standard stipulates a minimum of 256 dimensions but the total number of dimensions is in fact limited by the amount of memory available.
+
+the most common `multidimensional arrays` type is the two-dimentional array, the so-called `matrix`.
+
+example:
+
+```c++
+
+float numbers[3][10]; // 3 x 10 matrix
+numbers[0][9] = 7.2; // row 0, column 9
+
+```
+
+### arrays as array elements
+
+c++ does NOT need any special syntax to define multidimensional arrays. on the contrary, an n-dimensional array is no different than an array with only one dimension whose elements are (n-1)-dimensional arrays.
+
+example:
+
+```c++
+
+int arr[2][3] = 
+{
+    {5, 0, 0},
+    {7, 0, 0},
+};
+
+// is equivalent to
+int arr[][3] = 
+{
+    {5},
+    {7}
+};
+
+```
+
+when u initialize an array, u can only omit **the size of the first** dimension. it is necessary to define any other dimensions since they define the size of array elements.
