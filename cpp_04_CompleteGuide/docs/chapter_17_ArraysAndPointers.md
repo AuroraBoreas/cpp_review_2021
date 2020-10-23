@@ -596,5 +596,51 @@ for(int i=0; i < 5; ++i)
 
 (387)
 
-### arguments for a program
+### arguments for a command line program
 
+ah, i realize how easy it is to build a CLI(command-line-interface) in C++. while doing it is pain in ass in Python.
+
+`command line arguments` are typically used to govern how a program is executed or to supply the data a program will work with.
+
+example:
+
+```
+
+copy file1 file2
+
+```
+
+[patter]
+
+- the individual args are separated by space.
+- characters used for redirecting input and output (`>` or `<`)
+- and a following word are evaluated by the operating system and not passed to the program
+- if an arg contains `space` or `redirection characters`, u MUST place it in `double quotes`.
+
+### parameters of the function `main()`
+
+so far we have only used the function `main()` w/o parameters. however, if u intend to process `command line args`, u MUST define paramters for `main()`.
+
+example:
+
+```c++
+
+int main(argc, char* argv[])
+{
+    /* ... */
+}
+
+```
+
+[pattern]
+
+- `argc` contains the number of args passed via the command line. the program name is one of those, so `argc` will have a value of at least 1
+- `argv` is an array of `char pointers`
+    1. `argv[0]`, points to the program name(and path)
+    2. `argv[1]`, points to the first real arg, that is, the word after the program name
+    3. `argv[2]`, points to the second arg
+    4. ...
+    5. `argv[argc-1]`, points to the last arg
+    6. `argv[argc]`, is the NULL pointer
+
+various operating systems, for example, WINDOWS98/OO/NT and UNIX, allow u to declare a third paramter for `main()`. this parameter is an array with pointers to environment strings.
