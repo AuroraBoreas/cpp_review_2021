@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1603351475 source:d:\reference_01_code\c++\cpp_04_completeguide\src_code\chapter-17-arraysandpointers\sampleprogram05\main.cpp
+	<iostream>
+	<string>
+
+1603351899 source:d:\reference_01_code\c++\cpp_04_completeguide\src_code\chapter-17-arraysandpointers\sampleprogram05\strstr.cpp
+	<string.h>
+	<iostream>
+

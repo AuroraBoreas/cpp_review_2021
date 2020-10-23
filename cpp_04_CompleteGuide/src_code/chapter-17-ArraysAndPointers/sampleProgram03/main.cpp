@@ -12,12 +12,24 @@ int main()
     pv  -= 2;   // pv = v[2]
     ++pv;       // pv = v[3]
 
-    x = *pv++;  // precedence!
-    x += *pv--;
+    x = *pv++;  // precedence! i know, u fuckers.
+    // x = *(pv++); x = 0.3, pv = v[4]
+    x += *pv--; // x = x + 1.4, pv = v[3]
 
-    --pv;
+    --pv; // pv = v[2]
 
-    cout << x << endl;
+    cout << x << endl; // output 1.7
+
+    // pointer comparison
+    cout << endl;
+
+    int nums[6] = {1, 3, 5, 7, 9},
+        *ptr;
+
+    for(ptr=nums+5; ptr>=nums; --ptr)
+        cout << (void*)ptr << " = " << *ptr << endl;
+
+    cout << endl;
 
     return 0;
 }
