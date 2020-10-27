@@ -1,0 +1,3 @@
+Functionality
+
+The file stream classes inherit the functionality of their base classes. Thus, the methods,operators, and manipulators you have already used for cin and cout are also available here. Thus every file stream has methods for non-formatted writing and reading of single characters and/or data blocks the operators << or >> for formatted reading and writing from or to files methods and manipulators for formatting character sequences methods for state queries

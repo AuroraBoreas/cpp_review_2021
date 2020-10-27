@@ -113,17 +113,171 @@ the `constructor` and the method `open()` of all stream classes use the followin
 
 ### open mode flags
 
+example:
 
+```c++
 
+fstream addresses("address.fle", ios::in | ios::app);
+
+// or
+
+fstream addresses;
+addresses.open("address.fle", ios:in | ios::app);
+
+```
+
+### error handling
+
+the state flag `failbit` of the `ios` base class is raised if errors occur when opening a file.
+
+how to get the flag:
+
+- using `fail()` method directly, or
+- using `if(!myfile)` indirectly
+
+example:
+
+```c++
+
+if(!myfile) { //... }
+// or:
+if(myfile.fail()) { //... }
+
+/*
+the `failbit` is also set if a read or write error occurs.
+if a read operation fails, the end of the current file may have been reached.
+
+to distingush this normal behavior from a read error, u can use the `eof()` method(eof=end-of-file) to query the `eof` bit.
+*/
+
+if(myfile.eof()) // at end-of-file?
+
+```
 
 ## closing file
 
 (388)
 
+### motivation
+
+why close file always after file manipulation is done?
+
+- data may be lost, if for some reason the program is NOT terminated correctly
+- there is a limit to the number of files that a program can open simultaneously
+
+a program that terminates correctly will automatically close any open files before exiting. a file stream destructor will also close a file referenced by a stream. however, if the file is no longer in use before this point, u should close the file explicitly.
+
+[question]
+
+if a program that terminates incorrectly, will any open files be automatically closed before exiting?
+
+answer: NO
+
+explicitly closing file is good practice in real life.
+
+### method `close()` and `is_open()`
+
+example:
+
+```c++
+
+myfile.close()
+
+// or:
+
+if(myfile.is_open())
+{ //... }
+
+```
+
+### the `exit()` function
+
+prototype: `void exit(int status)`
+
+example:
+
+```c++
+#include <cstdlib>
+
+std::exit(1); // why?
+
+/*(https://www.daniweb.com/programming/software-development/threads/196899/exit-not-declared-in-scope)
+
+The cstdlib header contains the definition for the exit function,
+however up until recently this header was generally included by dependency
+- often unnecessarily - by other headers.
+So you are likely to see tutorials and books that rely on this - and other - header
+dependencies that have now been cleaned up.
+
+For example you may just #include <iostream> to use the exit function in gcc 3.4
+because iostream includes cstdlib
+however in gcc 4.3 this dependency has been removed
+so you need to #include <cstdlib> to utilise it.
+*/
+
+```
+
+
 ## reading and writing blocks
 
 (390)
 
+the file stream `classes` can use all the `public` operations defined in their base classes. this means u can write formatted or unformatted data to a file or read that data from the file block by block or character by character.
+
+### formatted and unformatted input and output
+
+example:
+
+```c++
+
+double price = 12.34;
+ofstream textFile("Test.txt");
+textFile << "Price: " << price << " Dollar" << endl;
+
+/*
+the file Test.txt will contain a line of text, such as "Price: ..." that exactly matches the screen output.
+*/
+
+```
+
+converting binary data to legible text is NOT practicable if u are dealing with large aoumts of data. it makes sense to write the data for a series of measurements to a binary file in the order in which they occur in the program.
+
+to do so, u simply open the file in binary mode and write the data to the file, or read it from the file, block by block.
+
+### transferring data blocks
+
+the `ostream` method `write()` transfers given number of bytes from main memory to a file.
+
+prototype: `ostream& write(const char *buff, int n);`
+
+example:
+
+```c++
+
+if(!fileStream.write("An example", 2))
+{
+    std::cerr << "Error in writing!" << std::endl;
+}
+
+```
+
+using `ostream` method `read()` transfers a data block from a file to a program buffer.
+
+prototype: `istream& read(char *buf, int n);`
+
+the methods `read()` and `write()` are often used for fiels with fixed length records. the block that needs to transferred can contain one or more records. **the buffer in main memory is either a `structure variable` or an `array` with elements beloing to the structure type**. u need to cast the address of this memory area to (char*).
+
 ## object persistence
 
-(392)
+(414)
+
+### storing objects
+
+objects are created during program runtime and cleaned up before the program terminates. to avoid this volatility, u can make an object `presistant`, that is, u can store the object in a file. however, u MUST ensure that the object can be reconstructed, as it was, when read. this means dealing with the following issues:
+
+- objects can contain other objects. u will generally not know how to store a member object
+- objects can contain references to other objects.however, it does NOT make sense to store pointer values in a file, as the memory address will change each time u re-launch the program.
+
+**one possible solution** to this issue is to store the data to allow them to be passed to a constructor for the class when read. **another solution** involves providing methods to allow the objects to write their own data members to files or read them from files. this technique is normally preferable since the class can now handle data storage itself, allowing it to write internal status data while simultaneously preventing external access to that data.
+
+### storing account class objects
