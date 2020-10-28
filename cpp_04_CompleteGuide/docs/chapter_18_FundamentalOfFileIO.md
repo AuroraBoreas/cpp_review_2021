@@ -281,3 +281,21 @@ objects are created during program runtime and cleaned up before the program ter
 **one possible solution** to this issue is to store the data to allow them to be passed to a constructor for the class when read. **another solution** involves providing methods to allow the objects to write their own data members to files or read them from files. this technique is normally preferable since the class can now handle data storage itself, allowing it to write internal status data while simultaneously preventing external access to that data.
 
 ### storing account class objects
+
+example:
+
+```c++
+
+if(!anAccount.write(outFile))
+{
+    std::ceer << "Error in writing!" << std::endl;
+}
+
+// when u read an account, u can simultaneously create an empty object that the `read()` method can access
+
+if(!anAccount.read(inFile))
+{
+    std::ceer << "Error in reading!" << std::endl;
+}
+
+```

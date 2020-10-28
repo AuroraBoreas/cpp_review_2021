@@ -165,12 +165,12 @@ Table: const, static of data members in a class
 | items          | normal     | const                     | static                       |
 |----------------|------------|---------------------------|------------------------------|
 | declaration    | n/a        | `const` prefix            | `static` prefix              |
-| initializer    | any        | once. cannot change later | once only.                   |
+| initializer    | any        | once. cannot change later | once only. can be changable  |
 | why?           | n/a        | think about `const var`   | think about `static` keyword |
 
 ### declaration and initialization
 
-static data members occupy memory space even if no objects of the class in question have been craeted. just like member functions, which occur only once, static data members MUST be defined and initialized in an external source file. the `range operator ::` is then used to relate the data members to the class.
+`static` data members occupy memory space even if no objects of the class in question have been craeted. just like member functions, which occur only once, `static` data members MUST be defined and initialized in an external source file. the `range operator ::` is then used to relate the data members to the class.
 
 example:
 
@@ -222,4 +222,250 @@ this syntax is preferable to the previous exmaple, since it clearly shows that a
 
 (328)
 
+ofc, u can use class methods to access a `static` data member with a `private` declaration. however, normal methods can be used for class objects only. since `static` data members are independent of any objects, access to them should also be independent of any object. static member functions are sued for this purpose.
 
+for example, u can call a static member function for a class even though no objects exist in that class.
+
+example:
+
+```c++
+// result.h
+
+class Result
+{
+    private:
+        static double min;
+        static double max;
+    public:
+        // static setter
+        static void setMin(double min);
+        static void setMax(double max);
+        // static getter
+        static double getMin(void); // within class
+        static double getMax(void); // within class
+}
+
+```
+
+example: 
+
+```c++
+
+#include "result.h"
+
+Result temperature;
+temperature.setMax(43.4); // equivalent calls:
+Result::setMax(43.4);
+
+```
+
+(328)
+
+**calling a static member function does NOT bind the function to any class object**. the `this` pointer is therefore unavailable, in contrast to normal member functions. this also means that **static member functions can NOT access data members and methods that are NOT static themselves**.
+
+## enumeration
+
+sample program
+
+```c++
+// main.cpp
+
+#include <iostream>
+
+using namespace std;
+
+class Lights
+{
+    public:
+        enum State { off, red, green, amber };
+    private:
+        State state;
+    public:
+        Lights(State s = off) : state(s) {}
+        State getState() const { return state; }
+        void setState(State s)
+        {
+            switch(s)
+            {
+                case off:   cout << "    OFF    "; break;
+                case red:   cout << "    RED    "; break;
+                case green: cout << "    GREEN  "; break;
+                case amber: cout << "    AMBER  "; break;
+                default:    return;
+            }
+            state = s;
+        }
+};
+
+int main()
+{
+    cout << "Some statements with objects "
+         << "of type Lights!\n";
+    Lights A1, A2(Lights::red);
+    Lights::State as;
+    as = A2.getState();
+    if(as == Lights::red)
+    {
+        A1.setState(Lights::red);
+        A2.setState(Lights::amber);
+    }
+    cout << endl;
+
+    return 0;
+}
+
+```
+
+### definition
+
+an enumeration is a user-definable, **integral** type. an enumeration is defined using the `enum` keyword. a range of values and a name for these values are also defined at the same time.
+
+example: 
+
+```c++
+
+enum Shape {Line, Rectangle, Ellipse};
+
+```
+
+the first constant has a value of 0, and each subsequent constant has a value that is one higher than its predecessor.
+
+however, u can also define the values of the constants explicitly.
+
+example:
+
+```c++
+
+enum Bound { Lower = -100, Upper = 100 };
+
+```
+
+u can leave out the type name, if u only need to define the constants.
+
+example:
+
+```c++
+
+enum { OFF, OUT = 0, ON, IN = 1};
+
+```
+
+this statement defines the constants *OFF* and *OUT*, setting their value to 0, and the constants *ON* and *IN* with a value of 1. the value for *OFF* and *ON* are implicit.
+
+### class-specific constants
+
+enumeration can be used to define integral symbolic constants in a simple way.
+
+Table:`enum` vs `#define`
+
+| items     | `#define`            | `enum`                    |
+|-----------|----------------------|---------------------------|
+| do what?  | replace text string  | enum constants are part of a declaration and thus have a valid range. this allows u to define constants that are visible within a namespace or class only.|
+
+## copy constructor
+
+the copy constructor creates a copy of an existing object. the paramter is thus a read-only reference to the object that needs to be copied. the copy constructor in *Article* class is thus declared as follows:
+
+declaration of copy constructor:
+
+```c++
+
+Article(const Article&);
+
+```
+
+the default copy constructor simple transfers the data members to the new object.
+
+
+## exercise
+
+`static` data members can't be initialized via `member initializers`, since it does not make sense according to the definition of `static` data member.
+
+const method works with const args;
+
+static method works with static data members only; 
+
+```c++
+// article.h
+
+#include <iostream>
+#include <string>
+
+class Article
+{
+    private:
+        long nr;
+        std::string name;
+        double salesPrice;
+        static int countObj; // static data members can not be initialized through member initializers
+    public:
+        // constructors
+        Article(long, const std::string&, double);
+        // copy constructor
+        Article(const Article&);
+        // destructor
+        ~Article();
+        // getter
+        long getNumber(void)       const { return nr; }
+        std::string getName(void)  const { return name; } // const means return_value can not be modified. this is thus cannot return reference of name..
+        double getSalesPrice(void) const { return salesPrice; }
+        static int getCount(void)        { return countObj; }
+        // setter
+        void setNumber(long n)              { nr = n; }
+        void setName(const std::string& s)  { name = (s.size() > 0)? s : "no name"; } // must prefix `const`. why? see constructor arguments.
+        void setSalesPrice(double sp)       { salesPrice = (sp > 0.0)? sp : 0.0; }
+        // print
+        void print(void) const;
+};
+
+```
+
+```c++
+// article.cpp
+
+#include <iostream>
+#include <string>
+#include "article.h"
+
+// data members
+int Article::countObj = 0;
+
+// constructors
+Article::Article(long n, const std::string& s, double sp)
+: nr(n), name(s), salesPrice(sp)
+{
+    //nr = n; name = s; salesPrice = sp;
+    ++countObj;
+    std::cout << "An article \"" << name
+              << "\" is created. \n"
+              << "This is the " << countObj << ". article!"
+              << std::endl;
+}
+// copy constructor
+Article::Article(const Article& anArticle)
+: nr(anArticle.nr), name(anArticle.name), salesPrice(anArticle.salesPrice)
+{
+    ++countObj;
+    std::cout << "A copy of the article \"" << name
+              << "\" is generated.\n"
+              << "This is the " << countObj << ". article!"
+              << std::endl;
+}
+// destructor
+Article::~Article()
+{
+    std::cout << "The article \"" << name
+              << "\" is destroyed.\n"
+              << "There are still " << --countObj << " articles!"
+              << std::endl;
+}
+
+// other method
+void Article::print() const
+{
+    std::cout << "article number: " << nr         << '\n'
+              << "article name  : " << name       << '\n'
+              << "sales price   : " << salesPrice << std::endl;
+}
+
+```

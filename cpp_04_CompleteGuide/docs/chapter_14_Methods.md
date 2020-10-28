@@ -238,6 +238,58 @@ every class *automatically* contains 4 standard methods:
 - the copy constructor and
 - the assignment
 
+[question]
+
+why default constructor doesnt work sometime?
+
+(https://blog.csdn.net/swagle/article/details/24936273?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.channel_param&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.channel_param)
+
+C++手册中说" 默认构造函数会在**需要的时候**被编译器产生出来”关键是需要的时候.
+
+原因是，需要的时候这个有两层意思：
+1. 一个是程序的需要. 程序如果需要，那就是程序员的责任, 所以就是设计该类的人负责设计初始化代码。
+2. 另一个是编译器的需要。
+
+example:
+
+```c++
+
+class foo
+{
+    public:
+        int val;
+        foo *pNext;
+};
+
+void test()
+{
+    foo f;
+    if(f.val || f.pNext)
+        cout << "in if" << endl;
+}
+
+int main()
+{
+    test();
+    return 0;
+}
+
+```
+
+<font color="red">补充</font>
+
+上述代码在vs上编译会报错，说使用了未初始化的局部变量。而在gcc编译器上却是可以编译通过并可以运行的。在这方面看来vs还是严格遵守C++标准的。
+
+C++新手一般有两个常见的**误解**：
+1. 任何class如果没有定义default constructor，就会被合成出来一个。
+2. 编译器合成出来的default constructor会显示设定“class内每一个data member的默认值
+
+总结：
+
+- 被合成出来的implicit nontrivial default constructors只能满足编器的需要。它之所以能够完成任务，是借着“调用member object或者baseclass的default constructor”或是“为每一个object初始化其virtualfunction机制或virtual base class机制”而完成
+
+- 在合成的default constructor中，只有base class subobjects和member class objects会被初始化。所有其他的nonstatic data member(如整数、整数指针、整数数组等)都不会被初始化。
+
 You can use your own definitions to replace these standard methods.
 
 ## `copy constructor`
