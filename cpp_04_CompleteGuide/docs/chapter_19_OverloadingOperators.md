@@ -317,7 +317,7 @@ BUT, wait a second.
 
 how can i differentiate a method vs friend functions in the first place?
 
-## friend classes
+## `friend` classes
 
 (445)
 
@@ -397,44 +397,118 @@ Table: diff btwn **method** vs **global** vs **friend**
 
 (447)
 
+### subscript operator []
+
+the subscript operator[] is normally used to access a single array element. it is a binary operator and thus has two operands.
+
+**the *subscript operator [] for arrays* implies background pointer arithmetic**. thus, the following restrictions apply to non-overloaded index operators:
+
+1. an operand MUST be a pointer -- an array name, for example
+2. the other operand MUST be an integer expression.
+
+
+conventional naming of operator category:
+
+- unary operator `-, +` etc
+- binary operator `+=` etc
+- ternary operator `?:` etc
+
 example:
 
 ```c++
 // array_t.cpp
-
 #include <iostream>
 #include <ctime>
 #include <cstdlib>
 using namespace std;
-#define MAX 100;
+#define MAX 100
 
 class FloatArr
 {
     private:
         float v[MAX];
     public:
-        float& operator[](int i);
-        static int getMaxIndex(void) { return MAX-1; }
+        // setup boundaries for data member v
+        float& operator[](int i) // give FloatArr obj an ability to act like normal array[]..
+        {
+            if(i<0 || i>=MAX)
+            {
+                cerr << "index is out of range!" << endl;
+                exit(1);
+            }
+            return v[i];
+        }
+        static int MaxIndex(void) { return MAX; }
 };
 
-float& FloatArr::operator[](int i)
+int main()
 {
-    if(i<0 || i>=MAX)
+    // create random numbers
+    FloatArr randoms;
+    srand(time(NULL));
+    int i;
+    for(i=0; i<FloatArr::MaxIndex(); ++i)
     {
-        cerr << "\nError, index is out of range!" << endl;
-        exit(1);
+        randoms[i] = (rand() - RAND_MAX/2) / 100.0F;
     }
-    return v[i];
+    while(cout << "\nindex:" && cin >> i) // order matters here ..
+        cout << i << ". element : " << randoms[i] << endl;
+    return 0;
 }
 
 ```
 
-### subscript operator []
+### using in classes
 
-the subscript operator[] is normally used to access a single array element. it is a binary operator and thus has two operands.
+**the *subscript operator [] for arrays* implies background pointer arithmetic**. thus, the following restrictions apply to non-overloaded index operators:
 
-- unary operator `-, +` etc
-- binary operator `+=` etc
-- ternary operator `?:` etc
+1. an operand MUST be a pointer -- an array name, for example
+2. the other operand MUST be an integer expression.
+
+**these restrictions do NOT apply if the index operator is overloaded for a class**.. u should note, however, that the operator function is always a class methods with a parameter for the right operand. the following therefore applies:
+
+- the left operand MUST be a class object
+- the right operand can be any valid type
+- the result type is NOT defined
+
+this allowes for considerable flexibility. however, your overloading should awlays reflect the normal use of arrays. more specifically, **the return value should be a reference to an object**.
 
 ## overloading shift-operators for I/O
+
+(449)
+
+### overloading the `<<` operator
+
+example:
+
+```c++
+cout << price;
+```
+
+- the left operand of `<<` is the object `cout`, which belongs to the `ostream` class. since the standard class `ostream` should NOT be modified, it is necessary to define a global operator function with two parameters. 
+- the right operand is a Euro class object.
+
+the following prototype applies for the operator function:
+
+prototype: `ostream& operator<<(ostream& os, const Euro& e);`
+
+the return value of the operator function is a reference to `ostream`. this allow for normal concatenation of operators.
+
+example: `cout << price << endl;`
+
+### overloading the `>>` operator
+
+the `>>` operator is overloaded for input to allow for the following statements.
+
+example:
+
+```c++
+cout << "Enter the price in Euros: "
+cin >> price;
+```
+
+the second statement causes the following call.
+
+`operator>>(cin, price);`
+
+as `cin` is an obj of the standard `istream` class, the first parameter of the operator function is declared as a reference to `istream`. the second parameter is again a reference to `Euro`.

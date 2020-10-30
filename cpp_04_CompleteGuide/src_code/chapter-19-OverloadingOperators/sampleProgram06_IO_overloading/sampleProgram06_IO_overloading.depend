@@ -1,0 +1,10 @@
+# depslib dependency file v1.0
+1603961196 source:d:\reference_01_code\c++\cpp_04_completeguide\src_code\chapter-19-overloadingoperators\sampleprogram06_io_overloading\main.cpp
+	<iostream>
+	"euro.h"
+
+1603961307 d:\reference_01_code\c++\cpp_04_completeguide\src_code\chapter-19-overloadingoperators\sampleprogram06_io_overloading\euro.h
+	<string>
+	<sstream>
+	<iomanip>
+

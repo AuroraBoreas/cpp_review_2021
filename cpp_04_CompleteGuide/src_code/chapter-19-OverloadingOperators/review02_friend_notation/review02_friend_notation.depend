@@ -1,0 +1,10 @@
+# depslib dependency file v1.0
+1603935331 source:d:\reference_01_code\c++\cpp_04_completeguide\src_code\chapter-19-overloadingoperators\review02_friend_notation\main.cpp
+	<iostream>
+	"euro.h"
+
+1603935844 d:\reference_01_code\c++\cpp_04_completeguide\src_code\chapter-19-overloadingoperators\review02_friend_notation\euro.h
+	<string>
+	<sstream>
+	<iomanip>
+
