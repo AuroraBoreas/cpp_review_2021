@@ -1,0 +1,10 @@
+# depslib dependency file v1.0
+1604045999 source:d:\reference_01_code\c++\cpp_04_completeguide\src_code\chapter-21-dynamicmemoryallocation\sampleprogram03_dynobj\main.cpp
+	<iostream>
+	"account.h"
+
+1604046754 d:\reference_01_code\c++\cpp_04_completeguide\src_code\chapter-21-dynamicmemoryallocation\sampleprogram03_dynobj\account.h
+	<string>
+	<sstream>
+	<iomanip>
+
