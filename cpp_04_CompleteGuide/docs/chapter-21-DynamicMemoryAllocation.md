@@ -224,19 +224,101 @@ if there is NOT enough memory available, the so-called `new handler` is called.
 
 (479)
 
+the operator `new` and `delete` were designed to create and destroy instance of a class dynamically. 
+
+- in this case, in addtion to allocating memory, a suitable constructor MUST be called. 
+- before releasing memory, the destructor MUST be called to perform cleaning up tasks.
+
+however, the operator `new` and `delete` ensure that this happens.
+
 ### calling `new` with a default constructor
+
+example:
+
+```c++
+
+Euro* pEuro = new Euro;
+// u MUST make sure that a default constructor exists!
+
+```
 
 ### explicit initialization
 
+to initialize an obj explicitly, u can state its initial values in parentheses when u call `new`.
+
+syntax:
+
+```c++
+
+Type *ptr = new Type(initializating_list);
+
+```
+
 ### releasing memory
+
+when an obj that was created dynamically is destroyed, the `delete` operator makes sure that the obj is cleaned up. **the `destructor` is first called, and only then is the memory space released**.
+
+as previously discussed in the section on fundamental types, when u call `delete` u must ensure that the pointer is addressing a dynamic obj or that u are dealing with a NULL pointer.
+
+syntax:
+
+```c++
+
+float *ptr = NULL; // NULL pointer
+
+```
 
 ## dynamic storage allocation for arrays
 
 (481)
 
+imagine u are compiling a program that will store an unknown quantity of elements in an array. your best option is to let the program create the array dynamically. an array of this type is known as a `dynamic array`.
+
 ### the `new[]` operator
 
+the `new[]` operator is available for creating dynamic arrays. when u call the operator, u MUST supply the type and quantity of the array elements.
+
+syntax: `vekPtr = new Type[cnt];`
+
+Example:
+
+```c++
+
+Account *pk = new Account[256];
+
+// this statement allocates memory of 256 `Account` type obj and uses the default constructor to initialize them.
+
+// these obj are
+pk[0], pk[1], ..., pk[255];
+// or pointer notation
+*pk, *(pk+1), ..., *(pk+255)
+
+```
+
+**if the array elements are of a class type, the class MUST have a `default constructor`, (or a default paramaterized constructor), since u can NOT supply an initialization list when calling `new[]`**. starting values for the array elements can NOT be assigned until later.
+
 ### the `delete[]` operator
+
+it is always a good idea to release the memory space occupied by a dynamic array, if the array is no longer needed. to do so, simply call the `delete[]` operator. **the braces[] tell the compiler to release the whole array, and not just a single array element**.
+
+example:
+
+```c++
+
+delete [] pk;
+
+```
+
+the operand for `delete[]` -- the `pointer` pk in this case -- MUST reference the place in memory that was allocated by a call to `new[]`! the destructor belonging to the current class is called for each array element. this shows the big difference to `delete`, which would merely call the destructor for *pk, i.e. for the first array element.
+
+Table: `new[]` vs `new`, `delete[]` vs `delete`
+
+| operator      | what?                                                                             | pre-requisit                                                               |
+|---------------|-----------------------------------------------------------------------------------|----------------------------------------------------------------------------|
+| `new[]`       | create an array of certain type in heap, then return the address of that array    | class must have `default constructor`                                      |
+| `new`         | create an obj of certain type in heap, then return obj's address                  |                                                                            |
+| `delete[]`    | call destructor of certain type for each array element, then clean up             | must reference the place in memory that was allocated by a call to `new[]` |
+| `delete`      | call destructor of certain type, then clean up                                    |                                                                            |
 
 ## application: linked lists
 
@@ -244,14 +326,30 @@ if there is NOT enough memory available, the so-called `new handler` is called.
 
 ### dynamic data structures
 
+a `linked list` is a dynamic data structure that allows easy insertion and deletion of data. a `data structure` defines how data can be organized in units, stored, and manipulated -- as array, or trees for examples.
+
+in constrast to a static data structure, whose size is known before a program is launched, a `dynamic` data structure can change `size` while a program is running.
+
 ### defining a linked list
 
+linked list has the following characteristics:
+
+- each list element contains **a data store for the live data** and **a pointer to the next element** in the list
+- each list element -- except the first and last elements -- has exactly one predecessor and one successor. the first element in the list has no predecessor and the last element no successor
+
 ### advantages
+
+the storage used for the list elements need NOT be contiguous. the main advantage of `linked list` is:
+
+- memory for the list elements is only allocated when needed
+- u only need to move a pointer when inserting or deleting list elements.
+
+when an array element is inserted or deleted, the other array elements have to be moved to make room or fill up the "gap" in the array. if there is no room left, u need to allocate memory for a new array and copy the data to it before inserting a new element.
 
 ## representing a linked list
 
 (485)
 
-### representing list elements
+### representing list elements`delete`
 
 ### representing a list
