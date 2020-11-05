@@ -87,3 +87,22 @@ this scenario would obviously mean trouble. imagine releasing memory allocated f
 (509)
 
 ### default assignment
+
+```c++
+
+v1 = v2;
+
+```
+
+default assignment is performed member by member. the data members of `v2` are copied to the corresponding data members of `v1` just like the copy constructor would copy them. however, this technique is NOT suitable for **class with dynamic members**. this would simply point the pointers belonging to different obj at the same dynamic allocated memory. in addition, memory previously addressed by a pointer of the target obj will be unreferenced after the assignment.
+
+### overloading the assignment operator
+
+in other words, u need to overload the default assignment for classes containing dynamic members. generally speaking, if u need to define a copy consturctor, u will also need to define an assignment.
+
+the operator function MUST perform the following tasks:
+
+- release the memory referenced by the dynamic members
+- allocate sufficient memory and copy the source obj's data to that memory
+
+**when implementing the operator function u MUST avoid self assignment**, which would read memory area that have already been released.

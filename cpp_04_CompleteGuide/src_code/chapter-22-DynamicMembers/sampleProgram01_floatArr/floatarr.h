@@ -33,6 +33,7 @@ class FloatArr
             for(int i=0; i < cnt; ++i)
                 arrPtr[i] = src.arrPtr[i];
         }
+        // ol assignment operator
         FloatArr& operator=(const FloatArr& src)
         {
             if(this!=&src)
