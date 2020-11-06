@@ -352,4 +352,8 @@ when an array element is inserted or deleted, the other array elements have to b
 
 ### representing list elements`delete`
 
+pass
+
 ### representing a list
+
+pass
