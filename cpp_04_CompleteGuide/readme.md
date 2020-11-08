@@ -14,7 +14,7 @@ from basic to advantage
 
 ## go brrrr
 
-2020, cnm C++
+2020, cnm C++, NMGB, NMSL, GB
 
 ## about
 
