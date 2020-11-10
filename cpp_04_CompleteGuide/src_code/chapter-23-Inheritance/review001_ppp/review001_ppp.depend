@@ -1,11 +1,1 @@
 # depslib dependency file v1.0
-1604893456 source:d:\reference_01_code\c++\cpp_04_completeguide\src_code\chapter-23-inheritance\review001_ppp\main.cpp
-	<iostream>
-	"car.h"
-
-1604893484 d:\reference_01_code\c++\cpp_04_completeguide\src_code\chapter-23-inheritance\review001_ppp\car.h
-	<string>
-	<sstream>
-	<iomanip>
-	<iostream>
-
