@@ -9,7 +9,7 @@ class Car
 {
     private:
         string producer;
-        int nr;
+        int    nr;
     public:
         // constructor
         Car(const string& s_prod, int n=0L)
@@ -25,7 +25,8 @@ class Car
         {
             cout << "\n--------------------\n"
                  << "\nProducer:    " << producer
-                 << "\nNumber  :    " << nr;
+                 << "\nNumber  :    " << nr
+                 << endl;
         }
 };
 
@@ -35,9 +36,9 @@ class PassCar: public Car
         string passCarType;
         bool   sunRoof;
     public:
+        // constructor
         PassCar(const string& prod, int n, const string& tp, bool b)
-        : Car(prod, n), passCarType(tp), sunRoof(b)
-        {}
+        : Car(prod, n), passCarType(tp), sunRoof(b){}
         // getter
         const string& getCarType(void) const { return passCarType; }
         bool getSunRoof(void)          const { return sunRoof; }

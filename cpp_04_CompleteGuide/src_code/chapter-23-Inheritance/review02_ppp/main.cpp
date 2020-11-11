@@ -16,5 +16,19 @@ int main()
 
     beetle.Car::display();
 
+
+    PassCar cabrio("Spitfire", 1001, "Triumph", true);
+    // pointer notation
+    Car* carPtr = &cabrio;
+    //cabrio = &cabrio;
+    carPtr->display();  // display base members only
+
+    // reference notation
+    Car& carRef = cabrio;
+    carRef.display();   // display base members only
+    //carRef.setSunRoof(true); //error
+    //PassCar _auto;
+    //_auto = carRef;     // error. less can't always fill more
+
     return 0;
 }
