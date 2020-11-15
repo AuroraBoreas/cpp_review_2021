@@ -17,6 +17,8 @@ from basic to advantage
 2020, cnm C++, NMGB, NMSL, GB
 CNMGB
 
+CNM
+
 ## about
 
 20200923, ZL
