@@ -60,3 +60,33 @@ traditional programming languages solved this issue by adding a **type field** b
 ### object-oriented approach
 
 the approach adopted by object-orient languages is `polymorphism`(Greek for multi-form). in C++, `virtual methods` are used to implement polymorphic classes. calling a virtual method makes the compiler execute a version of the method `suitable` for the object in question, when the object is accessed by a pointer or a reference to the base class.
+
+## virtual methods
+
+(567)
+
+### declaring virtual methods
+
+the `virtual` keyword is used to declare a virtual method in a base class.
+
+example:
+
+```c++
+virtual void display() const;
+```
+
+the definition of a virtual method is no difference from the definition of any other member function.
+
+a virtual method does NOT need to be redefined in the derived class. the derived class then inherits the virtual method of the base class.
+
+### redefinition
+
+however, it is common practice for the derived class to define its own version of the virtual method, which is thus modified to suit the special features of the derived class.
+
+creating a proprietary version of a virtual method means redefining that method. the redefinition in the derived class must have:
+
+1. the same signature and
+2. the same return type
+   
+as the virtual method in the base class.
+
