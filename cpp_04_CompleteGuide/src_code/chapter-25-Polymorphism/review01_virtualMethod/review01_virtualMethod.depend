@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1605572418 source:d:\reference_01_code\c++\cpp_04_completeguide\src_code\chapter-25-polymorphism\review01_virtualmethod\main.cpp
+	<iostream>
+	"animal.h"
+
+1605572472 d:\reference_01_code\c++\cpp_04_completeguide\src_code\chapter-25-polymorphism\review01_virtualmethod\animal.h
+	<iostream>
+

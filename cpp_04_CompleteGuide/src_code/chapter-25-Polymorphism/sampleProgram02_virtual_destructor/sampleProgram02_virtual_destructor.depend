@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1605502502 source:d:\reference_01_code\c++\cpp_04_completeguide\src_code\chapter-25-polymorphism\sampleprogram02_virtual_destructor\main.cpp
+	<iostream>
+	"Base.h"
+
+1605502617 d:\reference_01_code\c++\cpp_04_completeguide\src_code\chapter-25-polymorphism\sampleprogram02_virtual_destructor\base.h
+	<iostream>
+	<cstring>
+
