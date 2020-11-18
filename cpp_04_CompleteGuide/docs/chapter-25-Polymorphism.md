@@ -187,6 +187,10 @@ carPtr = new PassCar("500", false, 21, "Geo");
 //...
 delete carPtr;
 
+/*
+only the base class destructor for Car was executed. as the PassCar destructor is not called, neither is the destructor called for the data member passCarType, which is additionally defined in the derived class. the data member passCarType is a string, however, and occupies dynamically allocated memory -- this memory will not be released.
+*/
+
 ```
 
 ### destructor calls
@@ -194,3 +198,13 @@ delete carPtr;
 when memory is released, the destructor for an object is automatically called. if multiple constructors were called to create the object, the corresponding destructors are called in reverse order. what does this mean for objects in derived classes? **the destructor of the derived class is called first and then the destructor of the base class executed**.
 
 if u use a base class pointer to manage an object, the appropriate `virtual` methods of the derived class are called. however, non-virtual methods will always execute the base class version.
+
+if multiple objects are created dynamically in the derived class, a dangerous situation occurs. more and more unreferenced memory blocks will clutter up the main memory w/o u being able to reallocated them -- this can seriously impact your program's response and even lead to external memory being swapped in.
+
+### `virtual destructor`
+
+this issue can be solved simply by declaring virtual destructors.
+
+a class used as a base class for other classes should always have a virtual destructor defined. even if the base class does NOT need a destructor itself, it should at least contain a dummy destructor, that is, a destructor with an empty function body.
+
+## `virtual method table`
