@@ -208,3 +208,36 @@ this issue can be solved simply by declaring virtual destructors.
 a class used as a base class for other classes should always have a virtual destructor defined. even if the base class does NOT need a destructor itself, it should at least contain a dummy destructor, that is, a destructor with an empty function body.
 
 ## `virtual method table`
+
+(571)
+
+### static binding
+
+when a non-virtual method is called, the address of the function is known at time of compilation. the address is inserted directly into the machine code. this is also referred to as `static` or `early binding`.
+
+if a virtual method is called via an object's name, the appropriate version of this method is also known at time of compilation. so this is also a case of early binding.
+
+### dynamic binding
+
+however, if a virtual method is called by a pointer or reference, the function that will be executed when the program is run is unknown at time of compilation. the statement
+
+example: `carPtr->display();`
+
+could execute different version of the `display()` method, depending on the object currently referenced by the pointer.
+
+the compiler is therefore forced to create machine code that does NOT form an association with a particular function until the program is run. this is referred to as `late` or `dynamic binding`.
+
+example: `virtual, dynamic binding; non-virtual, static binding;`
+
+### `VMT`
+
+`dynamic binding` is supported internally by `virtual method table`(or `VMT` for short). a VMT is created for each class with at least one virtual method -- that is, an array with the address of the virtual methods in the current class.
+
+each object in polymorphic class contains a VMT pointer, that is, a hidden pointer to the VMT of the corresponding class. `dynamic binding` causes the virtual function call to be executed in two steps.
+
+1. the pointer to the VMT in the referenced object is read
+2. the address of the virtual method is read in the VMT
+
+in comparison with `static binding`, `dynamic binding` does have the disadvantage that `VMT`s occupy memory. moreover, program response can be impaced by indirect addressing of virtual methods.
+
+however, this is a small price to pay for the benefit. `dynamic binding` allows u to enhance compiled source code w/o having access the source code.

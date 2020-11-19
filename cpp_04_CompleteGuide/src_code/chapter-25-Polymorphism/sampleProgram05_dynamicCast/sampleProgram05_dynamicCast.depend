@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1605749485 source:d:\reference_01_code\c++\cpp_04_completeguide\src_code\chapter-25-polymorphism\sampleprogram05_dynamiccast\main.cpp
+	<iostream>
+	"car.h"
+
+1605749865 d:\reference_01_code\c++\cpp_04_completeguide\src_code\chapter-25-polymorphism\sampleprogram05_dynamiccast\car.h
+	<iostream>
+	<string>
+
