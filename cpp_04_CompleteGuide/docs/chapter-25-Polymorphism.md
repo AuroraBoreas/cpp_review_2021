@@ -241,3 +241,37 @@ each object in polymorphic class contains a VMT pointer, that is, a hidden point
 in comparison with `static binding`, `dynamic binding` does have the disadvantage that `VMT`s occupy memory. moreover, program response can be impaced by indirect addressing of virtual methods.
 
 however, this is a small price to pay for the benefit. `dynamic binding` allows u to enhance compiled source code w/o having access the source code.
+
+## dynamic casts
+
+(573)
+
+### safety issues in `downcasting`
+
+downcasts in class hierarchies are unsafe if u use a `C cast` or the `static_cast` operator. if the referenced object does NOT correspond to the type of the derived class, fatal runtime errors can occur.
+
+given that `carPtr` is a pointer to the base class `Car`, which is currently pointing to a `PassCar` type, the statement
+
+example:
+
+```c++
+
+Truck *truckPtr = static_cast<Truck*>(carPtr); // more always fill less.
+
+// will NOT cause a compiler error. but the following statement could cause the program to crash.
+
+truckPtr->setAxles(10);
+
+```
+
+### the `dynamic_cast<>` operator
+
+u can use the cast operator `dynamic_cast<>` to perform safe downcasting in polymorphic classes. at runtime, the operator checks whether the required conversion is valid or not.
+
+syntax: `dynamic_cast<type>(expression)`
+
+if so, the expression `expression` is converted to the target type `type`. the target type must be a pointer or reference to a polymorphic class or a `void` pointer. if it is a pointer type, `expression` must also be a pointer type. if the target type is reference, `expression` must identify an object in memory.
+
+if `dynamic_cast<>` operation failed, it will return a `NULL` pointer.
+
+the `dynamic_cast` can also be used for upcasting. the classes involved do NOT need to polymorphic in this case. however, type checking is NOT performed at runtime. an erroneous upcast is recognized and reported by the compiler.
