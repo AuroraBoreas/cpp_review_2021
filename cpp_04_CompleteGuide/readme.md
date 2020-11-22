@@ -18,6 +18,7 @@ from basic to advantage
 CNMGB
 
 CNM
+XNM
 
 ## about
 
