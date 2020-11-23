@@ -1,0 +1,99 @@
+#ifndef CELL_H_INCLUDED
+#define CELL_H_INCLUDED
+
+#include <string>
+#include <iostream>
+using std::string;
+using std::cout;
+using std::endl;
+
+class Cell // virtual class
+{
+    private:
+        Cell* next; // why can u do this? wtf..
+        /*
+        short answer: there is no magic here. c++ allows to do so..
+        long version is as follows.
+
+        link: https://stackoverflow.com/questions/33294852/pointers-to-a-class-within-itself-in-c
+
+        [explanation]
+        what: declare a data member with incomplete type, in this case Cell type
+        why :
+        c++ allows to declare pointers to incomplete types, including the type that is under declaration.
+        because a pointer inside `class Cell`, next, points to `class Cell`. (this :x)
+        it does NOT have to mean that the pointer is to the same object.
+
+        this is because there's actually NO NEED for the compiler to know anything more about the target type of a pointer
+        since the pointer is basically just an address.
+
+        it's first when u're doing certain things with the pointer it need to be a complete type
+        (for example: at the point where u dereference it, accesses a member or method, do pointer arithmetics etc)
+
+        allowing this is required in order to allow for constructing a wide range of data structures including linked lists,
+        trees and so on.
+
+        in C, its also useful since it allows data hiding by NOT exposing the contents of a struct outside the compilation unit
+
+        */
+    protected:
+        // constructor
+        Cell(Cell* suc=NULL)
+        {
+            next = suc;
+        }
+    public:
+        // destructor
+        virtual ~Cell(){}
+        // getter
+        Cell* getNext(void) const { return next; }
+        // setter
+        void  setNext(Cell* suc) { next = suc; }
+        // repr
+        virtual void display(void) const = 0; // pvm
+};
+
+class BaseEl:public Cell
+{
+    private:
+
+        string name;
+    public:
+        // constructor
+        BaseEl(Cell* suc=NULL, const string& s ="")
+        :Cell(suc), name(s)
+        {}
+        // getter
+        const string& getName(void) const { return name; }
+        // setter
+        void setName(const string& s) { name = s; }
+        // repr
+        void display(void) const
+        {
+
+            cout << "\n----------------------------------"
+                 << "\nname : " << name << endl;
+        }
+};
+
+class DerivedEl:public BaseEl
+{
+    private:
+        string rem;
+    public:
+        // constructor
+        DerivedEl(Cell* suc=NULL, const string& s="", const string& b="")
+        :BaseEl(suc, s), rem(b){}
+        // getter
+        const string& getRem(void) const { return rem; }
+        // setter
+        void setRem(const string& b) { rem = b; }
+        // repr
+        void display(void) const
+        {
+            BaseEl::display();
+            cout << "Remark : " << rem << endl;
+        }
+};
+
+#endif // CELL_H_INCLUDED
