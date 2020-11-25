@@ -1,0 +1,10 @@
+# depslib dependency file v1.0
+1606266000 source:d:\reference_01_code\c++\cpp_04_completeguide\src_code\chapter-27-multipleinheritance\review02_initializero\main.cpp
+	<iostream>
+	"car.h"
+
+1606266025 d:\reference_01_code\c++\cpp_04_completeguide\src_code\chapter-27-multipleinheritance\review02_initializero\car.h
+	<string>
+	<iomanip>
+	<iomanip>
+

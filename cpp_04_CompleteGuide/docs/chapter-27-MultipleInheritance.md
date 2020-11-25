@@ -229,3 +229,46 @@ if the class hierarchy does NOT contain any virtual base classes, the following 
 
 - the base class constructors are executed first, top-down and from left to right on each level.
 - finally, the constructor belonging to the current class, which is at the bottom of the inheritance graph, is executed.
+
+### base initializers
+
+the constructor for the class **at the bottom end of the inheritance graph** uses base initializers to pass the values to the direct and indirect base classes. if the base initializer definition is missing in a constructor definition, the default constructor of the base class is automatically executed.
+
+initial values are thus passed to the base class constructors **"bottom up"**.
+
+## initializing virtual base classes
+
+(617)
+
+```c++
+
+class SUV: public PassCar, public Van
+{
+    private:
+        // ...
+    public:
+        SUV( ... ): Car( ... )
+        {
+            // ...
+        }
+        void display() const
+        {
+            PassCar::display();
+            Van::display();
+            // ...
+        }
+};
+
+```
+
+### constructor calls in virtual base classes
+
+when an obj is created for a multiple-derived class, the constructors of the base classes are called first. however, if there is one virtual base class in the class hierarchy, **the virtual base class constructor** is executed `before` a constructor of a non-virtual base class is called.
+
+the constructor of the virtual base class nearest the top of the inheritance graph is executed first. **this does NOT necessarily mean the top level of the class hierarchy, since a virtual base class can be derived from a non-virtual base class**.
+
+### base initializer
+
+u may be wondering what args are used to call the constructor of a virtual base class. a base initializer of the direct-derived class or any other derivation could be reponsible. the following applies:
+
+for the purpose of initialization, it does NOT matter whether a class derived directly from `Car` contains a base initializer or not.
