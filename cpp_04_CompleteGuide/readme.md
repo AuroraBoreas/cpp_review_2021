@@ -19,6 +19,7 @@ CNMGB
 
 CNM
 XNM
+XMN
 
 ## about
 
