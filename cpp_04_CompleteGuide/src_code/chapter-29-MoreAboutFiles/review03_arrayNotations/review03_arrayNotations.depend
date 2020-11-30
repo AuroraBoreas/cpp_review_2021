@@ -1,0 +1,17 @@
+# depslib dependency file v1.0
+1606700946 source:d:\reference_01_code\c++\cpp_04_completeguide\src_code\chapter-29-moreaboutfiles\review03_arraynotations\main.cpp
+	<iostream>
+	"datetime.h"
+
+1606698769 d:\reference_01_code\c++\cpp_04_completeguide\src_code\chapter-29-moreaboutfiles\review03_arraynotations\datetime.h
+	<iostream>
+	<string>
+
+1606698808 source:d:\reference_01_code\c++\cpp_04_completeguide\src_code\chapter-29-moreaboutfiles\review03_arraynotations\datetime.cpp
+	"datetime.h"
+	<ctime>
+	<iostream>
+	<string>
+	<iomanip>
+	<sstream>
+
