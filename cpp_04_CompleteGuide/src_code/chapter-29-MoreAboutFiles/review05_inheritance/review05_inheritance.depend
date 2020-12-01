@@ -1,0 +1,16 @@
+# depslib dependency file v1.0
+1606786146 source:d:\reference_01_code\c++\cpp_04_completeguide\src_code\chapter-29-moreaboutfiles\review05_inheritance\main.cpp
+	<iostream>
+	"date.h"
+
+1606786283 d:\reference_01_code\c++\cpp_04_completeguide\src_code\chapter-29-moreaboutfiles\review05_inheritance\date.h
+	<string>
+	<iostream>
+
+1606786730 source:d:\reference_01_code\c++\cpp_04_completeguide\src_code\chapter-29-moreaboutfiles\review05_inheritance\date.cpp
+	"date.h"
+	<iostream>
+	<iomanip>
+	<sstream>
+	<ctime>
+
