@@ -346,4 +346,13 @@ u can exploit the error tracking options that state flags give u to implement yo
 
 C++ also provides standard exception handling for streams. u can use the `exceptions()` method to specify the flags in the status-word of a stream that will cause exceptions to be thrown.
 
-the `exceptions()` method is defined in the `ios` stream base class.
+the `exceptions()` method is defined in the `ios` stream base class. the method expects one or multiple state flags separated by the `|` sign. an exception is then thrown for the flags specified.
+
+example:
+
+```c+
+
+ifstream ifstrm("account.fle");
+fstrm.exceptions(ios::failbit | ios::badbit);
+
+```
