@@ -356,3 +356,163 @@ ifstream ifstrm("account.fle");
 fstrm.exceptions(ios::failbit | ios::badbit);
 
 ```
+
+on accessing the `fstrm` stream an exception is thrown if either one of the flags `ios::failbit` or `ios::badbit` is raised. the operation that caused the errror is then terminated and the state flags are cleared by a call to `clear(rdstate());`.
+
+the exception thrown here is of a standard exception class, `failure`. this type is defined as `public` element in the `ios` base class and comprises the virtual method `what()` that returns a C string containing the cause of the error. the exception handler will normally send the string to standard error output.
+
+u can call `exceptions()` w/o any arg to discover the stage flags in a status-word of a stream that can cause an exception to be thrown. if a bit is set in the return value of the `exceptions()` method, an appropriate exception will be thrown whenever this error occurs.
+
+example:
+
+```c++
+
+iostate except = fstrm.exceptions();
+if(except & ios::eofbit) ...
+
+```
+
+this statement uses a bitwise `AND` operation to ascertain whether an exception is thrown when end-of-file is reached.
+
+## persistence of polymorphic objects
+
+(669)
+
+```c++
+
+// account.h
+
+enum TypeId { Account, DEP_ACC, SAV_ACC };
+
+class Account
+{
+    private: // data member
+    public:  //constructor, access methods...
+        virtual TypeId getTypeId() const { return ACCOUNT; }
+        virtual ostream& write(ostream& fs) const;
+        virtual istream& read(istream& fs); 
+};
+
+class DepAcc: public Account
+{
+    TypeId getTypeId() const { return DEP_ACC; }
+    ostream& write(ostream& fs) const;
+    istream& read(istream& fs);
+};
+
+class SavAcc: public Account
+{
+    TypeId getTypeId() const { return SAV_ACC; }
+    ostream& write(ostream& fs) const;
+    istream& read(istream& fs);
+};
+
+
+// account.cpp
+
+#include "account.h"
+
+ostream& DepAcc::write(ostream& os) const
+{
+    if(!Account::write(os))
+        return os;
+    os.write((char*)&limit, sizeof(limit));
+    os.write((char*)&deb, sizeof(deb));
+    return os;
+}
+
+istream& DepAcc::read(istream& is)
+{
+    if(!Account::read(is))
+        return is;
+    is.read((char*)&limit, sizeof(limit));
+    is.read((char*)&deb, sizeof(deb));
+    return is;
+}
+
+```
+
+### storing polymorphic objects
+
+imagine u wanna make the obj of a polymorphic class hierarchy persistent, that is, store them in a file. u need to ensure that an obj can be reconstructed precisely when it is read. this gives rise to the fact that obj in polymorphic class hierarchies contain virtual methods. so it is not simply a case of making the data members of an obj into records and writing them to a file.
+
+**to allow the class to assume control over object storage, u need methods that allow the object to write its own data members to a file**. the methods can have a virtual definition within the class hierarchy. thus, if pointers are used to reference objects, the appropriate read/write operation for each obj will be called.
+
+### storing objects of the `Account` hierarchy
+
+the opposite page shows the Account class, with wichi u should already be familiar. **virtual file I/O** methods have now been added. the implementation of the `read()` and `write()` methods was discussed earlier in chapter 18.
+
+the derived classes DepAcc and SavAcc also contain definitions of the `read()` and `write()` methods that read only their "own" objects and write them to files. the implementation first calls the appropriate base class method. if no errors occur, it is simply a question of transferring the additional data members of the derived classes to or from a file.
+
+at present, no type information will be written to file or read from file. this task will be performed by a special class whose features are used for file management.
+
+## persistence of polymorphic objects(continued)
+
+(671)
+
+```c++
+// account.h; (continued)
+
+#include "exceptio.h"
+
+class AccFile
+{
+    private:
+        fstream f;
+        string name;
+    public:
+        AccFile(const string& s)    throw(OpenError);
+        ~AccFile(){ f.close(); }
+        long append(Account& acc)   throw(WriteError);
+        Account* retrieve(long pos) throw(ReadError);
+};
+
+long AccFile::append(Account& acc) throw(WriteError)
+{
+    f.seekp(0L, ios::end);
+    long pos = f.tellp();
+
+    if(!f)
+        throw WriteError(name);
+    
+    TypeId id = acc.getTypeId();
+    f.write((char*)&id, sizeof(id));
+
+    if(!f)
+        throw WriteError(name);
+    else
+        acc.write(f);
+    
+    if(!f)
+        throw WriteError(name);
+    else
+        return pos;
+}
+
+```
+
+### a scenario
+
+imagine u wanna save the data fro various account types, including current and savings accounts to a file. **since the objects u need to save belong to different types, u MUST save both the data members and the type of object**. this is the only way to ensure that an object will be correctly reconstructed when read.
+
+the methods in the class u are going to define should throw exception if errors occur. the exception type thrown by a method is stated in the exception specification.
+
+### the `AccFile` class
+
+the `AccFile` class, which is used fro random access to a file with account data, is defined above. the data members are an `fstream` type file stream and a string used for storing the file name.
+
+the cnostructors saves the file name and opens a given file for reading and appending at end-of-file. if the file can NOT be opened, the constructor throws an `OpenError` class exception.
+
+the `append()` method writes an account passed to it as an arg at end-of-file and returns the position where the account was written into the file.
+
+in order to get the current type of the arg, the virtual method `getTypeId()` is called. Depending on this type the `append()` method will write the appropriate type field to the file and then call the virtual method `write()`, allowing the current object to write itself to the file. if a write error occurs, the method will throw a `WriteError` type exception.
+
+the `retrieve()` method first reads the type identifier and then determines the type of object it needs to allocate memory for. the data from the file is then transferred to the dynamically allocated object by a call to the virtual method `read()`. here too, an exception will be thrown if a stream access error occurs.
+
+## application: index files
+
+(673)
+
+```c++
+
+```
