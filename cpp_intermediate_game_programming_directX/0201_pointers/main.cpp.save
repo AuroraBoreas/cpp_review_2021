@@ -1,0 +1,15 @@
+#include <iostream>
+
+using namespace std;
+
+// when to use pointers?
+void swap(int, int);
+
+
+int main()
+{
+    
+    return 0;
+}
+
+void swap(int ,)
