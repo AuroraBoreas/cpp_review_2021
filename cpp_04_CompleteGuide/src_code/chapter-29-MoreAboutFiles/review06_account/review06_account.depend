@@ -1,0 +1,15 @@
+# depslib dependency file v1.0
+1606957391 source:d:\reference_01_code\c++\cpp_04_completeguide\src_code\chapter-29-moreaboutfiles\review06_account\main.cpp
+	<iostream>
+	"account.h"
+
+1606957421 d:\reference_01_code\c++\cpp_04_completeguide\src_code\chapter-29-moreaboutfiles\review06_account\account.h
+	<string>
+	<iostream>
+
+1606957453 source:d:\reference_01_code\c++\cpp_04_completeguide\src_code\chapter-29-moreaboutfiles\review06_account\account.cpp
+	"account.h"
+	<sstream>
+	<iostream>
+	<iomanip>
+

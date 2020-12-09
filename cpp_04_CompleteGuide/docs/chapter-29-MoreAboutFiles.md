@@ -515,4 +515,120 @@ the `retrieve()` method first reads the type identifier and then determines the 
 
 ```c++
 
+// index.cpp: (continued)
+
+void IndexFile::insert(long k, long n) throw(ReadError, WriteError)
+{
+    IndexEntry entry;
+    int size = entry.recordSize();
+
+    index.clear();
+    index.seekg(0. ios::end);
+    long nr = index.tellg();
+
+    if(!index) throw ReadError(name);
+
+    nr -=size;
+    bool found = false;
+    while(nr>=0 && !found)
+    {
+        if(!entry.read_at(index, nr))
+            throw ReadError(name);
+        if(k<entry.getKey())
+        {
+            entry.write_at(index, nr+size);
+            nr -=size;
+        }
+        else
+        {
+            found = true;
+        }
+    }
+
+    entry.setKey(k); entry.setPos(n);
+    entry.write_at(index, nr+size);
+
+    if(!index)
+        throw WriteError(name);
+}
+
 ```
+
+it makes sense to organize data sequentially in files if u need to walk through all the records regularly. this is particularly true for files used to salary data or phone bills.
+
+however, **most application need to provide quick access to specific data**. for example, a user would definitely prefer to be able to locate an account quickly by reference to an account number, rather than searching through a file from top to bottom. index files can mean a real performance boost in cases like this.
+
+### index files
+
+an `index file` comprises a so-called `primary file` containing the live data, and an index. the `index` consists of pairs of keys and record positions for the primary file. a key stored in the index will identify a record in the primary file. this situation can be more easily explained by the following graphic.
+
+(graphic on P.674)
+
+the index is stored by reference to the keys for speed of access, allowing u to perform a binary search to locate the position of a record.
+
+### inserting into the index
+
+we can use the `IndexFile` class definitino to represent an index. the `insert()` method, which correctly inserts a new record into sorted index, is defined opposite.
+
+the read pointer is first set to end-of-file for insertions. if the current position is 0, that is, the file is empty, the entry is inserted at offset 0. in all other cases, any entries whose keys are greater than the new key are shifted down to make room for the new entry.
+
+## implementing an index file
+
+(675)
+
+representing the index file
+
+```c++
+
+// index.h: defined the class IndexFile
+
+class IndexFileSystem: public AccFile, public IndexFile
+{
+    private:
+        string name;
+    public:
+        IndexFileSystem(const string s)
+        : AccFile(s + ".prim"), IndexFile(s + ".ind")
+        { name = s; }
+        void insert (Account& acc)
+        {
+            if(search(acc.getNr()) == -1)
+            {
+                long pos = append(acc);
+                if(pos != -1)
+                    IndexFile::insert(acc.getNr(), pos);
+            }
+        }
+        Account* retrieve(long key)
+        {
+            long pos = search(key);
+            if(pos == -1)
+                return NULL;
+            else
+            {
+                IndexEntry entry;
+                IndexFile::retrieve(entry, pos);
+                return (AccFile::retrieve(entry.getPos()));
+            }
+        }
+};
+
+```
+
+### index file for account management
+
+since an index file consists of a primary file and an index, it makes sense to derive the class used to represent an index file from the classes of the primary file and the index file.
+
+the `IndexFileSystem` class, which is derived from the two previously defined classes `AccFile` and `IndexFile`, is defined on the opposite page. the only data member is a string for the file name. the constructor expects a file name as an argument and composes names for the primary file and the index by adding by adding a suitable suffix. Base initializers are then used to open the corresponding files.
+
+it is NOT necessary to define a destructor, since files are automatically closed when the base class destructors are called.
+
+### inserting and retrieving records
+
+the `insert()` method das defined to insert new records. it first calls the `search()` method to check whether the account number already exists in the index. if not, a new record is appended to the end of the primary file using the `append()` method. then the key and the address of the record are inserted into the index.
+
+the `IndexFileSystem` class also contains the `retrieve()` method, which is used to retrieve records from the primary files. the key, key, which is passed to the method, is used by the `search()` method to look up the address of the required record in the index. then the record is retrieved from the primary file by the `AccFile` class `retrieve()` method.
+
+only the `retrieve()` methods for the `IndexFile` and `AccFile` classes and the `search()` method, which performs a binary search in the index, are needed to complete the index file implementation. it's your job to implement these three methods as your next exercise! (wow, that's harsh)
+
+using a sorted file to implement an index has the disadvantage that records need to be shifted to make room to insert new records. as shifting is time-consuming, an index is normally represented by a tree, which needs less reorganization.

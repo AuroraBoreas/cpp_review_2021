@@ -32,7 +32,7 @@ public:
     bool setDate(int y, int m, int d)
     {
         if(m < 1 || m > 12) return false;
-        if(d < 1 || d > 31)     return false;
+        if(d < 1 || d > 31) return false;
         switch(m)
         {
             case 2: if(isLeapYear(y))
@@ -98,6 +98,8 @@ public:
         else if(month != d.month) return month < d.month;
         else                      return day < d.day;
     }
+    Date& operator+(const Date& d1, const Date& d2);
+    Date& operator-(const Date& d1, const Date& d2);
 
 };
 
