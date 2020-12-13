@@ -16,6 +16,7 @@ from basic to advantage
 
 2020, cnm C++, NMGB, NMSL, GB
 CNMGB
+NMSL
 
 
 ## about
