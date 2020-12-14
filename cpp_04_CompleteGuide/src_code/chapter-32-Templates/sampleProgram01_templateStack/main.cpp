@@ -8,7 +8,7 @@ using namespace std;
 //int add(int, int);
 //double add(double, double);
 
-template<typename T>
+template<class T>
 T add(T a, T b)
 {
     return (a + b);
@@ -17,7 +17,9 @@ T add(T a, T b)
 int main()
 {
     int a = 5, b = 4;
-    cout << add(a, b) << endl;
+    cout << add<int>(a, b) << endl;
+    float c = .1, d = .2;
+    cout << add<float>(c, d) << endl;
 
     cout << "\ntest Time cls\n";
 

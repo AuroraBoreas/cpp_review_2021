@@ -1,0 +1,17 @@
+# depslib dependency file v1.0
+1607912549 source:d:\reference_01_code\c++\cpp_04_completeguide\src_code\chapter-32-templates\review02_templatecls\main.cpp
+	<iostream>
+	"stackn.h"
+	<cstdlib>
+	<iomanip>
+	"time.h"
+
+1607910851 d:\reference_01_code\c++\cpp_04_completeguide\src_code\chapter-32-templates\review02_templatecls\stackn.h
+
+1607912727 d:\reference_01_code\c++\cpp_04_completeguide\src_code\chapter-32-templates\review02_templatecls\time.h
+	<string>
+	<ctime>
+	<sstream>
+	<iomanip>
+	<iostream>
+
