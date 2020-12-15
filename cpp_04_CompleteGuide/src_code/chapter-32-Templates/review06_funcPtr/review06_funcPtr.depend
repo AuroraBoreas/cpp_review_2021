@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1607929030 source:d:\reference_01_code\c++\cpp_04_completeguide\src_code\chapter-32-templates\review06_funcptr\main.cpp
+	<iostream>
+	<cstdlib>
+	<cctype>
+

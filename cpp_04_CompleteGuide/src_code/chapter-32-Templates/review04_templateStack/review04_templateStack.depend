@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1607926185 source:d:\reference_01_code\c++\cpp_04_completeguide\src_code\chapter-32-templates\review04_templatestack\main.cpp
+	<cstdlib>
+	<iostream>
+	<iomanip>
+	"stack.h"
+
+1607926421 d:\reference_01_code\c++\cpp_04_completeguide\src_code\chapter-32-templates\review04_templatestack\stack.h
+
