@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1608007502 source:d:\reference_01_code\c++\cpp_04_completeguide\src_code\chapter-33-containers\sampleprogram01_listdelete\main.cpp
+	<iostream>
+	<list>
+	<cstdlib>
+	<ctime>
+

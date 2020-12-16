@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1608008060 source:d:\reference_01_code\c++\cpp_04_completeguide\src_code\chapter-33-containers\sampleprogram02_priorityque\main.cpp
+	<iostream>
+	<queue>
+	<string>
+

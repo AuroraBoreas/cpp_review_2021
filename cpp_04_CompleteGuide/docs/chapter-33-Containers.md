@@ -214,3 +214,278 @@ inserting methods
 | `size_type insert(...);`                           | insert n copies of x afte pos and ..  |
 | `void insert(...);`                                | insert all elements from ...          |
 
+### insert methods
+
+the following methods are defined in the container classes `vector`, `deque` and `list`.
+
+- push_back()    insert at end
+- insert()       insert after a given position
+
+additionally, the following method is available in the `list` and `deque` classes
+
+- push_front()   insert at beginning
+
+this method is not defined in the `vector` class.
+
+the `insert()` method is overloaded in various versions, allowing u to insert a single obj, multiple copies of an obj, or obj copies from another container. given two containers `v` and `w` the following
+
+example: `w.insert(--w.begin(), v.begin(), v.end());`
+
+### runtime behavior
+
+the **dissimilar runtime behavior** for methods can be ascribed to the implementation of various container classes.
+
+### insertion in adapter classes
+
+there is only one insertion method for adapter classes: `push()`. in stacks and queues, `push()` appends an obj with a constant runtime. insertion of obj into `priority queue` depends on the priority of the obj and runtime is linear.
+
+## accessing obj
+
+(781)
+
+method `search()` of container class `sortVec`
+
+```c++
+// sortVec.h
+
+template<class T, class Compare>
+class SortVec<T, Compare>::search(const T& obj)
+{
+    int first = 0; last = end() - begin() - 1, mid;
+    while(first < last)
+    {
+        mid = (first + last + 1) / 2; 
+        if(obj < (*this)[mid]>) // search the left half
+        {
+            last = mid - 1;
+        }
+        else
+            first = mid; // search the right half
+    }
+
+    if(obj == (*this)[first])
+        return first;
+    else
+        return size();
+}
+
+```
+
+### the `front()` and `back()` methods
+
+access to individual obj in the container classes `vector`, `deque` and `list` can be performed by the following methods
+
+- `front()`     for access to the first element and
+- `back()`      for access to the last element
+
+
+both methods return a reference to the obj in question.
+
+example:
+
+```c+
+
+double z = v.front();
+v.front() = 1.9;
+
+```
+
+this saves the first obj in container `v` in teh variable `z` and then overwrites the obj by 1.9.
+
+### access via indices
+
+the subscript operator[] is overloaded in the vector and deque classes to permit the use of indices for access to the obj in a container. an index is a positive integer of the type `size_type`.
+
+example: `v[20] = 11.2;` 
+
+when u use the subscript operator, u MUST ensure that the index does NOT exceed the valid range. u can use the access method `at()` to throw an exception if an index is out of range.
+
+example: `v.at(20) = 11.2;`
+
+the `at()` method throws an exception of the standard error class `out_of_range` of an error occurs.
+
+## length and capacity
+
+(783)
+
+method `merge()` of container class `SortVec`
+
+```c++
+
+// sortVec.h
+// merge method definition
+
+template<class T, class Compare>
+class SortVec<T, Compare>::merge(const SortVec<T, Compare>& v)
+{
+    SortVec temp;
+    SortVec::iterator pos = begin();
+    int n1 = 0, n2 = 0;
+    // copy the smallest obj into vector temp:
+    while(n1< size() && n2 < v.size())
+    {
+        if(pos[n1] <= v[n2])
+            temp.push_back(pos[n1++]);
+        else
+            temp.push_back(v[n2++]);
+    }
+
+    while(n1 < size())
+    {
+        temp.push_back(pos[n1++]);
+    }
+
+    while(n2 < size())
+    {
+        temp.push_back(v[n2++]);
+    }
+
+    *this = temp;
+}
+
+```
+
+## deleting in sequences
+
+(785)
+
+a priority queue
+
+```c++
+// prior_t.cpp
+
+#include <queue>
+#include <string>
+#include <iostream>
+
+using namespace std;
+
+class Parcel
+{
+    private:
+        unsigned int prio;
+        string info;
+    public:
+        Parcel(unsigned int p, const string& s)
+        : prio(p), info(s) {}
+        friend bool operator<(const Parcel& x, const Parcel& y)
+        { return (x.prio < y.prio); }
+        friend ostream& operator<<(ostream& os, const Parcel& x)
+        {
+            os << x.prio << " " << x.info << endl; return os;
+        }
+};
+
+int main()
+{
+    priority_queue<Parcel> pq;
+    pq.push(Parcel(7, "Bob")); // insert
+    pq.push(Parcel(1, "Peter"));
+    pq.push(Parcel(4, "Susan"));
+
+    while(!pq.empty())
+    {
+        cout << pq.top() << endl;
+        pq.pop();
+    }
+
+    return 0;
+}
+
+```
+
+### deletion methods
+
+the following methods are available for deleting obj in the container classes `vector`, `deque` and `list`:
+
+- pop_back()    deletes the last obj in the container
+- erase()       deletes the obj at a given pos, or deletes all obj in a given range
+- clear()       deletes all obj in a container
+
+the following method is additionally defined in the `deque` and `list` classes.
+
+- pop_front()   deletes the first obj in the container
+  
+this method does NOT have a return value, just like the `pop_back()` method.
+
+## list operations
+
+(787)
+
+sample program
+
+```c++
+
+// list_t.cpp
+
+#include <list>
+#include <cstdlib>
+#include <iostream>
+using namespace std;
+
+typedef list<int> INTLIST;
+
+int display(const INTLIST& c);
+
+int main()
+{
+    INTLIST ls, sls;
+    int i;
+    for(i=1; i<=3; ++i)
+    {
+        ls.push_back(rand()%10);
+    }
+
+    ls.push_back(ls.front());
+
+    ls.reverse();
+    
+    ls.sort();
+
+    for(i=1; i<=3; ++i)
+    {
+        sls.push_back(rand()%10);
+    }
+
+    INTLIST::iterator pos = ls.end();
+
+    ls.splice(--pos, sls, sls.begin());
+
+    display(sls);
+
+    ls.sort();
+    sls.sort();
+    ls.merge(sls);
+    ls.unique();
+
+    display(ls);
+
+
+    return 0;
+}
+
+int display(const INTLIST& c)
+{
+    list<int>::const_iterator pos;
+    for(pos=c.begin(); pos != c.end(); ++pos)
+    {
+        cout << *pos << endl;
+    }
+    return 0;
+}
+
+```
+
+### splice operations
+
+`splice operation` insert the obj from one list container at a given position in another list container and remove them from the original container. u can **transfer** either a whole container or just part of a container.
+
+## associative containers
+
+(789)
+
+sequences store obj in linear order. searching for a given obj will thus require a linear runtime. if u have only a few obj to deal with, this will NOT cause any  significant delay. however, it is a major disadvantage in large collections of obj.
+
+### represeting sets and maps
+
+associative containers with different classes that represent sets and maps allow u to optimize runtime. they manage obj in so-called `heap`, that is in trees with a minimum height.
