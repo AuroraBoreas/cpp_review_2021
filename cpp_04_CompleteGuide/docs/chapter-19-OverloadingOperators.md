@@ -388,8 +388,8 @@ Table: diff btwn **method** vs **global** vs **friend**
 | when to use       | anytime               | symmetrical op, or w/o class change     | access private data members of a class      |
 | where             | in class              | global namespace                        | in class                                    |
 | access private?   | YES                   | NO                                      | YES                                         |
-| ol all operators? | No. especially:       | NO. except in-place op ol               | NO. ol most                                          |
-|                   | `=, (), [], ->`       |                                         |                                             |
+| ol all operators? | No. especially:       | NO. except in-place op ol.              | NO. ol most                                 |
+|                   | `=, (), [], ->`       | `<<, >>` ostream op must be global      | `<<, >>` ostream op must be global          |
 |                   | `+=, -=, *=, /=, %=`  |                                         |                                             |
 | CAN NOT ol op?    | `::, cls.member, :?`  | `::, cls.member, :?`                    | `::, cls.member, :?`                        |
 

@@ -59,6 +59,7 @@ The assignment operator is an exception to this rule and will be discussed separ
 ### integer promotion
 
 Integer promotion is first performed for any expression:
+
 - `bool`, `char`, `signed char`, `unsigned char`, and `short` are converted to `int`
 - `unsigned short` is also converted to `int` if the `int` type is greater than `short`, and to `unsigned int` in all other cases.
 
@@ -82,7 +83,6 @@ c < 'a';
 Usual arithmetic type conversions are performed for all binary operators and the conditional operator ?: provided the operands belong to an arithmetic type, 
 
 the only exceptions being the assignment operator and the logical operators `&&` and `||`.
-
 
 Two different cases can occur during type conversion in assignments:
 

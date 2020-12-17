@@ -95,7 +95,6 @@ when a class derived from an abstract class, it inherits all the methods the bas
 - `VMT` : `virtual method table`, page 571
 - `PVM` : `pure virtual method`, page 590
 
-
 a class dervied from a concrete class can again contain `pure virtual methods`, due to additional definitions in the derived class. in other words, `an abstract class can be derived from a concrete class`.
 
 an abstract class does NOT necessarily need to contain `pure virtual functions`. if the class contains a `protected constructor`, objects of the class type can NOT be created. this constructor can only be called then by methods in derived classes. a constructor of this type normally acts as base initializer, when an object of a derived class type is created.

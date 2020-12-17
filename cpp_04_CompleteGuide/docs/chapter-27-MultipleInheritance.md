@@ -5,7 +5,7 @@
 topics:
 
 1. how new classes are created by multiple inheritance and
-2. explians their uses.
+2. explains their uses.
 3. besides introducing u to creating and destroying objects in multiple-derived classes, virtual base classes are depicted to avoid ambiguity in multiple inheritance.
 
 ## multiple-derived classes
@@ -55,7 +55,7 @@ pass
 
 ### accessibility of Base Classes
 
-when defining a multiple-derived class, the accessibility, `private`, `protected` or `public`, must be defined separately for each base class. 
+when defining a multiple-derived class, the accessibility, `private`, `protected` or `public`, must be defined separately for each base class.
 
 example:
 
@@ -132,7 +132,7 @@ example:
 
 ```c++
 
-cout << motorHome.Home::getNr(); 
+cout << motorHome.Home::getNr();
 cout << mySUV.PassCar::getProd();
 
 ```
@@ -153,15 +153,15 @@ class Van:public virtual Car
 
 ### issues
 
-**u will NOT normally want a class created by multiple inheritance to contain multiple instances of an indirect base class**. why should a station wagon contain two version of the manufacturer's name or the chassis number for example? so u minght be asking yourself whether u can define multiple-derived classes that will contain only one instance of an indirect base class.
+**u will NOT normally want a class created by multiple inheritance to contain multiple instances of an indirect base class**. why should a station wagon contain two version of the manufacturer's name or the chassis number for example? so u might be asking yourself whether u can define multiple-derived classes that will contain only one instance of an indirect base class.
 
-c++ uses `virtual base classes` to do this. an obj in a multiple-derived class contains only one instance of the members in a virtual base class.
+c++ uses `virtual base classes` to do this. **an obj in a multiple-derived class contains only one instance of the members in a virtual base class**.
 
 ### declaration
 
-a direct base class is declared `virtual` when a derived class is defined. u can use the `virtual` keyword, which directly precedes the name of the base class.
+**a direct base class is declared `virtual` when a derived class is defined**. u can use the `virtual` keyword, which directly precedes the name of the base class.
 
-a virtual base class takes effect in cases of multiple inheritance. the following defintion
+**a virtual base class takes effect in cases of multiple inheritance**. the following defintion
 
 example:
 

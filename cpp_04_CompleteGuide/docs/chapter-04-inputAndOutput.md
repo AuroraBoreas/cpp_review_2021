@@ -246,7 +246,7 @@ for example,
 
 // u can specify a different delimiting character by passing the character to the getline() function as a third argument.
 
-getline(cin, s, '.')
+getline(cin, s, '.');
 
 // NOTE: the delimiter character is read, but NOT stored in the string.
 // any characters subsequent to the first period will remain in the input buffer of the stream

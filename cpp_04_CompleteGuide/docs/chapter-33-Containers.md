@@ -489,3 +489,285 @@ sequences store obj in linear order. searching for a given obj will thus require
 ### represeting sets and maps
 
 associative containers with different classes that represent sets and maps allow u to optimize runtime. they manage obj in so-called `heap`, that is in trees with a minimum height.
+
+## sets and multisets
+
+(791)
+
+sample sets and multisets
+
+```c++
+
+// set_t.cpp
+
+#include <set>
+#include <cstdlib>
+#include <ctime>
+#include <iostream>
+using namespace std;
+
+typedef set<int> IntSet;
+typedef IntSet::iterator SetIter;
+
+typedef multiset<int> IntMultiSet;
+typedef IntMultiSet::iterator MultiSetIter;
+
+int main()
+{
+    IntSet lotto;
+    SetIter pos;
+
+    srand((unsigned)time(NULL));
+    while(lotto.size() < 5)
+        lotto.insert(rand()%50);
+    
+    cout << "these are your lotto numbers: " << endl;
+    for(pos=lotto.begin(); pos != lotto.end(); ++pos)
+        cout << *pos << "   ";
+    cout << "\n\n";
+
+    IntMultiSet ms;
+    MultiSetIter mpos;
+    for(int i=0; i<10; ++i)
+        me.insert(rand()%10);
+
+    cout << "And now 10 random numbers "
+         << " between 0 and 10: : << endl;
+    
+    for(mpos=ms.begin(); mpos != ms.end(); ++mpos)
+        cout << *mpos << "  ";
+    cout << "\n";
+
+    return 0;
+}
+
+```
+
+sets and multisets are used for efficient management of obj: collections with sortable keys, that is, insertion, deletion, and search operations can be performed with logarithmic runtimes. keys are always parts of obj, thus, keys are data members whose relationships to one another MUST be defined in the corresponding class. a lesser than relationship is normally defined for this purpose, that is, the operator`<` will be overloaded for the class.
+
+### declaring sets and multisets
+
+the container classes `set` and `multiset` have two constructors each for creating containers. u can use the default constructor to create sets and multisets with a length of 0. the second constructor inserts obj from a range of iterators into the new set or multiset.
+
+example:
+
+```c++
+#include "account.h"
+#include <set>
+
+using std::set;
+
+typedef set<Account> AccountSet;
+AccountSet mySet(first, last);
+
+```
+
+here, [first, last) is a range of iterators in an existing container whose obj are of `Account` type.
+
+the copy constructor is also defined, and this allows u to use an existing container of the same type to initialize a new container.
+
+### inserting and deleting
+
+the `insert()` method is available for insertion. this allows for insertion of individual obj or multiple obj from a given range of iterators.
+
+example:
+
+```c++
+
+mySet.insert(Account(1234, "May, Tom", 100));
+
+
+mySet.erase(mySet.begin());
+
+mySet.erase(mySet.begin(), mySet.end());
+
+```
+
+## maps and multimaps
+
+(793)
+
+using `multimaps`
+
+```c++
+// mulmap_t.cpp
+
+#include <map>
+#include <string>
+#include <iostream>
+
+using namespace std;
+
+typedef multimap<int, string> MULTI_MAP;
+typedef MULTI_MAP::const_iterator ITERATOR;
+
+inline void display(const MULTI_MAP& m)
+{
+    ITERATOR pos;
+    cout << endl;
+    for(pos=m.begin(); pos != m.end(); ++pos)
+        cout << pos->first << " " << pos->second << endl;
+    cout << endl;
+}
+
+int main()
+{
+    MULTI_MAP mm;
+    mm.insert(pair<int, string>(7, "ZL"));
+    mm.insert(pair<int, string>(3, "SCY"));
+    mm.insert(pair<int, string>(3, "LL"));
+
+    display(mm);
+
+    ITERATOR pos;
+    pos = mm.find(3);
+    if(pos != mm.end())
+        cout << pos->first << " " << pos->second << endl;
+    cout << endl;
+
+    int key = 3;
+    cout << "there are " << mm.count(key) << " obj with key " << key << endl; 
+
+    return 0;
+}
+
+```
+
+### representing pairs of Keys/Objects
+
+maps and multimaps store pairs of sorted keys and objects.
+
+the c++ standard library contains the class template `pair<const Key, T>` with two `public` data members `first` and `second`, a default constructor, and a copy constructor to represent key/obj pairs.
+
+### using maps and multimaps
+
+the container classes `map` and `multimap` contain constructors with the same fucntionality as the `set` and `multiset` classes.
+
+## bitsets
+
+(795)
+
+representing raster images with bitmaps
+
+```c++
+
+// bitmap.h
+
+#include <bitset>
+#include <stdexcept>
+
+using namespace std;
+
+template<int N>
+class Bitmap: public bitset<N>
+{
+    private:
+        int lines, cols;
+        int ax, ay;
+        int ai;
+    public:
+        Bitmap(int l, int c);
+        void move(int x, int y);
+        void draw(int x, int y);
+};
+
+template<int N>
+Bitmap<N>::Bitmap(int l, int c)
+{
+    if(l*c <= N)
+    {
+        reset();    // set all bits to 0
+        lines = l; cols = c;
+        ax = 0; ay = 0; ai = 0;
+    }
+    else throw invalid_argument("Invalid argument \n");
+}
+
+template<int N>
+Bitmap<N>::draw(int x, int y)
+{
+    if(x>=0 && x < lines && y>=0 && y < cols)
+    {
+        int savex = x, savey = y;
+        
+        if(ax > x)
+        {
+            int temp = ax; ax = x; x = temp;
+            temp = ay; ay = y; y = temp;
+        }
+
+        int dx = x - ax, dy = y - ay;
+        int xinc = 1, yinc;
+
+        if(dy<0)
+        { yinc = -1; dy = -dy; }
+        else yinc = 1;
+
+        int count = dx + dy;
+        int d = (dx - dy) / 2;
+
+        while(count-- > 0)
+        {
+            ai = ax * cols + ay;
+            set(ai);
+            if(d<0)
+            { ay += yinc; d += dx; }
+            else
+            { ax += xinc; d -= dy; }
+        }
+
+        ax = savex; ay = savey;
+        ai = ax * cols + ay;
+    }
+    else throw invalid_argument("Invalid argument \n");
+}
+
+// TBD
+
+```
+
+### declaring bitsets
+
+a `bitset` stores a bit sequence of a given length. this allows storage of mass bit coded data, such as raster images, with minimum memory used.
+
+the container class `bitset<N>` provides the functionality needed to manage bitsets. the template parameter N is the length of bitsets, that is the maximum number of bits stored.
+
+u can use the default constructor to create a bitset with no initial values. however, u can also use a given bit-pattern to initialize a bitset. the bit-pattern is either defined as an `unsigned long` vlaue or as a string.
+
+example:
+
+```c++
+
+string s = "1010101010";
+bitset<1024> b(s);
+
+```
+
+the string s can contain only the '0' or '1' characters.
+
+1. **the last character** in the string will be the first bit value(0 or 1) at bit position 0,
+
+2. **the second to the last character** in the string is the bit value at position 1, and so on.
+
+3. the remaining bits are padded with 0 up to a length of N.
+
+
+## bitsets(continued)
+
+(797)
+
+### manipulating bits
+
+the container class `bitset<N>` provides the following methods.
+
+- `get()` method for reading individual bits
+- `set()` method for writing individual bits
+- `set()` method w/o any args, *all* the bits in the bitset are set to 1.
+- `reset()` method deletes all the bits.
+- `flip()` method inverts all bits.
+- subscript `[]` operator references bits at specific coordinates, btwn 0 and N-1
+- bitwise operators also works
+  
+### the Bresenham algorithm
+
+skip

@@ -2,7 +2,6 @@
 
 basic of basic
 
-
 ## binary arithmetic operators
 
 binary opertion pattern
@@ -24,7 +23,6 @@ a + b
 | *             | multiplication        |
 | /             | division              |
 | %             | remainder             |
-
 
 ## unary arithmetic operators
 

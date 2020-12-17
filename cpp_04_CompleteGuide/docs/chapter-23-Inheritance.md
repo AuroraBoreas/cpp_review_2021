@@ -94,7 +94,7 @@ Table: member-access-control
 | type of access    | meaning                                                                                                                                                                               |
 |-------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `private`         | class memebers declared as `private` can be used only by `member functions` and `friend`(cls or func) of the class.                                                                   |
-| `protected`       | class members declared as `protected` can be used by `member functions` and `friend`(cls or function) of the class. additionally, they can be used by classes derived from the class. |
+| `protected`       | class members declared as `protected` can be used by `member functions` and `friend`(cls or function) of the class. additionally, they can be used by classes `derived` from the class. |
 | `public`          | class members declared as `public` can be used by any function.                                                                                                                       |
 
 [explanation]

@@ -282,3 +282,62 @@ the list BadIndex, OutOfRange states the exceptions that the function `func()` c
 (639)
 
 exception handling for numeric operations
+
+### exception class members
+
+when an exception is thrown, the exception obj type determines which exception handler will be executed. for this reason, an exception class does NOT need to have any members.
+
+however, an exception class can contain data members and methods -- just like any other class. this make sense, as locally defined non-static obj are destroyed when an exception has been thrown and the stack is unwound. thus, the exception handler can no longer access the previously existing objects.
+
+u can use the data members of error classes to rescue data threatened by an error condition.
+
+### the exception class `MathError`
+
+pass
+
+### exception hierarchies
+
+new exception classes can be derived from existing exception classes. **a base class will normally represent a general error type and specific errors will be represented by derived classes**.
+
+ba aware of the following rules for exception handlers in this context:
+
+- given that T is derived exception class, special errors of this type are handled by the exception handler
+- if T is a base class, the handler will also catch the exception obj thrown by derived classes, thus providing similar handling for generic and specific errors
+
+## standard exception classes
+
+(641)
+
+exception classes **derived from** `logic_error`
+
+| exception class       | explanation                                 |
+|-----------------------|---------------------------------------------|
+| invalid_argument      | invalid argument                            |
+| out_of_range          | argument value NOT in its expected range    |
+| length_error          | length exceeds maximum capacity             |
+| domain_error          | domain error reported by the implementation |
+
+exception classes **derived from** `runtime_error`
+
+| exception class       | explanation                                 |
+|-----------------------|---------------------------------------------|
+| range_error           | range error in internal computation         |
+| underflow_error       | arithmetic underflow error                  |
+| overflow_error        | arithmetic overflow error                   |
+
+### hierarchy of standard exception classes
+
+the c++ standard library contains various exception classes, which are used in the string and container libraries, for example. however, the standard exception classes can be used just like exception classes of your own. their definitions are to be found in the header file `stdexcept`.
+
+the standard exception classes are organized in a hierarchy, the common base class being the `exception` class. in addition to a default constructor, a copy constructor, and an assignment, this class contains a virtual `public` method, `what()`, which returns a message on error cause as a C string.
+
+### representing logic errors and runtime errors
+
+the following exception classes are derived from the `exception` class:
+
+table: `logic_error` and `runtime_error`
+
+| derived classes       | usage                                                                                                                    |
+|-----------------------|--------------------------------------------------------------------------------------------------------------------------|
+| `logic_error`         | used to represent logic errors, caused by anomalies in the program's logic. these errors can be avoided.                 |
+| `runtime_error`       | used to represent errors, such as under or overflows occurring in internal computations. there errors are unpredicatable.|
