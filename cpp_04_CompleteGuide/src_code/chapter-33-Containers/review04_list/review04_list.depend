@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1608087462 source:d:\reference_01_code\c++\cpp_04_completeguide\src_code\chapter-33-containers\review04_list\main.cpp
+	<iostream>
+	<ctime>
+	<cstdlib>
+	<list>
+	<iomanip>
+
