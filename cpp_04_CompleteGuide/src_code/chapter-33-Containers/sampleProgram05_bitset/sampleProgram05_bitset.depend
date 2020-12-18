@@ -3,3 +3,15 @@
 
 1608171430 source:d:\reference_01_code\c++\cpp_04_completeguide\src_code\chapter-33-containers\sampleprogram05_bitset\funcpointer.cpp
 
+1608184991 source:d:\reference_01_code\c++\cpp_04_completeguide\src_code\chapter-33-containers\sampleprogram05_bitset\twocomp.cpp
+
+1608185505 source:d:\reference_01_code\c++\cpp_04_completeguide\src_code\chapter-33-containers\sampleprogram05_bitset\carinheritance.cpp
+	<iostream>
+	"car.h"
+
+1608185727 d:\reference_01_code\c++\cpp_04_completeguide\src_code\chapter-33-containers\sampleprogram05_bitset\car.h
+	<string>
+	<sstream>
+	<iomanip>
+	<iostream>
+
