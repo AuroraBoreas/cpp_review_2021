@@ -1,0 +1,19 @@
+# depslib dependency file v1.0
+1608629909 source:d:\reference_01_code\c++\cpp_07_accelerated+c++\src_code\chapter-01-string\datetime_concrete\main.cpp
+	<iostream>
+	<iomanip>
+	"time.h"
+	"date.h"
+
+1608624840 d:\reference_01_code\c++\cpp_07_accelerated+c++\src_code\chapter-01-string\datetime_concrete\time.h
+	<ctime>
+	<string>
+	<sstream>
+	<iomanip>
+
+1608629840 d:\reference_01_code\c++\cpp_07_accelerated+c++\src_code\chapter-01-string\datetime_concrete\date.h
+	<ctime>
+	<sstream>
+	<string>
+	<iomanip>
+

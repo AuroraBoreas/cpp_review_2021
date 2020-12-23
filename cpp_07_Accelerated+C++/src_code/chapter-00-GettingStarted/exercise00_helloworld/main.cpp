@@ -1,15 +1,33 @@
 #include <iostream>
 #include <string>
+#include <cstdlib>
 
 void hello(const std::string&, unsigned int);
 
+std::string prompt = "\nEnter your name "
+                     "(press ctrl + c to quit) : ";
+
 int main()
 {
-    std::cout << "\nEnter your first name: ";
+    std::cout << prompt;
     std::string name;
-    getline(std::cin, name);
-    unsigned int len = name.size(); // or size?
-    hello(name, len);
+    unsigned int len;
+    while(getline(std::cin, name))
+    {
+        if(std::cin.bad())
+            break;
+        else
+        {
+            len = name.size();
+            if(len<1)
+            {
+                std::cerr << "name is empty" << std::endl;
+                return -1;
+            }
+            hello(name, len);
+            std::cout << prompt;
+        }
+    }
 
     return 0;
 }

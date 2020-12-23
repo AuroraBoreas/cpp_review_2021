@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1608540803 source:d:\reference_01_code\c++\cpp_07_accelerated+c++\src_code\chapter-01-string\template_notations\main.cpp
+	<iostream>
+	<cstdlib>
+	"stack.h"
+
+1608541167 d:\reference_01_code\c++\cpp_07_accelerated+c++\src_code\chapter-01-string\template_notations\stack.h
+
