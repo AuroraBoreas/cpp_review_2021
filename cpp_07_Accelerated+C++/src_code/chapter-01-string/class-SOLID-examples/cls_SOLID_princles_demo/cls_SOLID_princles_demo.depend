@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1608520486 source:d:\reference_01_code\c++\cpp_07_accelerated+c++\src_code\chapter-00-gettingstarted\cls_solid_princles_demo\main.cpp
+	<iostream>
+	"shape.h"
+
+1608522264 d:\reference_01_code\c++\cpp_07_accelerated+c++\src_code\chapter-00-gettingstarted\cls_solid_princles_demo\shape.h
+	<iostream>
+

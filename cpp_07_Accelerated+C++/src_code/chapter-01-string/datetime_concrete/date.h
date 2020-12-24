@@ -92,15 +92,15 @@ class Date
         // comparison
         bool operator==(const Date& d)
         {
-            return(   this->year  == d.year
-                   && this->month == d.month
-                   && this->day   == d.day);
+            return(   year  == d.year
+                   && month == d.month
+                   && day   == d.day);
         }
         bool operator<(const Date& d)
         {
-            if(this->year != d.year)        return (this->year < d.year);
-            else if(this->month != d.month) return (this->month < d.month);
-            else                            return (this->day < d.day);
+            if(year != d.year)        return (year < d.year);
+            else if(month != d.month) return (month < d.month);
+            else                      return (day < d.day);
         }
 };
 

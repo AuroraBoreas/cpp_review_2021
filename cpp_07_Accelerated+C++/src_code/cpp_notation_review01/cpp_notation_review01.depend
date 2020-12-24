@@ -1,0 +1,12 @@
+# depslib dependency file v1.0
+1608769582 source:d:\reference_01_code\c++\cpp_07_accelerated+c++\src_code\cpp_notation_review01\main.cpp
+	<iostream>
+	<iomanip>
+	<vector>
+	"account.h"
+
+1608769137 d:\reference_01_code\c++\cpp_07_accelerated+c++\src_code\cpp_notation_review01\account.h
+	<string>
+	<sstream>
+	<iomanip>
+

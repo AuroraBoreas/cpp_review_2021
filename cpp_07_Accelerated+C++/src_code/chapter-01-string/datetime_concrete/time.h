@@ -81,13 +81,13 @@ class Time
             return (hour*60*60 + minute*60 + second);
         }
 
-        friend bool operator==(const Time& a, const Time& b)
+        bool operator==(const Time& t)
         {
-            return (a.asSeconds() == b.asSeconds());
+            return (asSeconds() == t.asSeconds());
         }
-        friend bool operator<(const Time& a, const Time& b)
+        bool operator<(const Time& t)
         {
-            return (a.asSeconds() < b.asSeconds());
+            return (asSeconds() < t.asSeconds());
         }
 
 };
