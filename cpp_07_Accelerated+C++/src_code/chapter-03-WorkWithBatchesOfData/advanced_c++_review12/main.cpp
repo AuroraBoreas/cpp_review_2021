@@ -39,6 +39,31 @@ public:
     YellowDog(const string& s): Dog(s) { cout << "yellow dog say oi" << endl; }
 };
 
+inline bool isLeapYear(int year)
+{
+    return (year%4 == 0 && year%100 != 0) || (year%400 == 0);
+}
+
+inline bool setDate(int y, int m, int d)
+{
+    if(m<1 || m>12) return false;
+    if(d<1 || d>31) return false;
+    switch(m)
+    {
+        case 2: if(isLeapYear(y))
+                {
+                    if(d>29) return false;
+                }
+                else
+                    if(d>28) return false;
+                break;
+        case 4:
+        case 6:
+        case 9:
+        case 11: if(d>30) return false;
+    }
+    return true;
+}
 
 int main()
 {
@@ -162,6 +187,40 @@ int main()
 
     // op for storage
     // op for other
+    // if, switch
+    int a1(10);
+    if(a1<= 18)
+    {
+        cout << "a1 is less than 18\n";
+    }
+    else if(a1 > 18 && a1 < 30)
+    {
+        cout << "a1 is greater than 18 and less than 30\n";
+    }
+    else cout << "a1 is greater than 30\n";
+
+    bool sd = setDate(2020, 2, 29);
+    std::cout << std::boolalpha << sd << std::endl;
+
+    // loop
+    for(int i=0; i<5; ++i)
+    {
+        std::cout << i << std::endl;
+    }
+    int j = 0;
+    while(j<5)
+    {
+        std::cout << j << std::endl;
+        ++j;
+    }
+    int ii = 5;
+    do
+    {
+        std::cout << ii << std::endl;
+        ii++;
+    } while(ii<5);
+    // cls
+    // ref to the leading cls before main
 
     return 0;
 }
