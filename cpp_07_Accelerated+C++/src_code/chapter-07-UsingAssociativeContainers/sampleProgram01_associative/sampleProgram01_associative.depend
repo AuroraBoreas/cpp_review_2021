@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1609834463 source:d:\reference_01_code\c++\cpp_07_accelerated+c++\src_code\chapter-07-usingassociativecontainers\sampleprogram01_associative\main.cpp
+	<iostream>
+	<map>
+	<string>
+
