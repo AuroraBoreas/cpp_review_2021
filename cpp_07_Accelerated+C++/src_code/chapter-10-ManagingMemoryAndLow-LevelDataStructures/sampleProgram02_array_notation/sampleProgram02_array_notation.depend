@@ -1,0 +1,19 @@
+# depslib dependency file v1.0
+1609899031 source:d:\reference_01_code\c++\cpp_07_accelerated+c++\src_code\chapter-10-managingmemoryandlow-leveldatastructures\sampleprogram02_array_notation\main.cpp
+	<iostream>
+	"datetime.h"
+
+1609899202 d:\reference_01_code\c++\cpp_07_accelerated+c++\src_code\chapter-10-managingmemoryandlow-leveldatastructures\sampleprogram02_array_notation\datetime.h
+	"date.h"
+	"time.h"
+
+1609898755 d:\reference_01_code\c++\cpp_07_accelerated+c++\src_code\chapter-10-managingmemoryandlow-leveldatastructures\sampleprogram02_array_notation\date.h
+	<ctime>
+	<iostream>
+	<iomanip>
+
+1609897329 d:\reference_01_code\c++\cpp_07_accelerated+c++\src_code\chapter-10-managingmemoryandlow-leveldatastructures\sampleprogram02_array_notation\time.h
+	<ctime>
+	<iostream>
+	<iomanip>
+

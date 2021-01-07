@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1609907273 source:d:\reference_01_code\c++\cpp_07_accelerated+c++\src_code\chapter-10-managingmemoryandlow-leveldatastructures\sampleprogram04_fileio\main.cpp
+	<fstream>
+	<string>
+	<iostream>
+
