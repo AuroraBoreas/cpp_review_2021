@@ -357,3 +357,57 @@ decltype(x + y) add(T1 x, T2 y);
 auto add(T1 x, T2 y)->decltype(x + y);
 
 ```
+
+#### keyword `typename`
+
+pass
+
+#### member templates
+
+member functions of classes may be templates. however, member templates may not be virtual.
+
+```c++
+
+class MyClass
+{
+    ...
+    template<typename T>
+    void f(T);
+};
+
+// template constructor
+
+template<typename T>
+class Myclass
+{
+    public:
+        // copy constructor with implicit type conversion
+        // does NOT suppress implicit copy constructor
+        template<typename U>
+        MyClass(const MyClass<U>& x);
+        ...
+};
+
+void f()
+{
+    MyClass<double> xd;
+    ...
+    MyClass<double> xd2(xd);    // calls implicit copy construtor
+    MyClass<int> xi(xd);        // calls template constructor
+    ...
+}
+
+// nested class templates
+
+template<typename T>
+class MyClass
+{
+    ...
+    template<typename T2>
+    class NestedClass;
+    ...
+};
+
+
+```
+
