@@ -316,3 +316,44 @@ function templates may have default template args.
 
 syntax: `[](T args) mutable -> return_type { //statement };`
 
+```c++
+// type of lambda
+#include <functional>
+#include <iostream>
+
+std::function<int(int, int)> returnLambda()
+{
+    return [](int x, int y){ return x*y; };
+}
+
+int main()
+{
+    auto f = returnLambda();
+    std::cout << f(6, 7) << std::endl;
+}
+
+```
+
+#### keyword `decltype`
+
+using keyword `decltype`, u can let the compiler find out the type of an expression. this is the realization of the often requested `typeof` feature.
+h/e, the existing `typeof` implementations were inconsistent and incomplete, so c++11 introduced a new keyword.
+
+```c++
+
+std::map<std::string, float> coll;
+decltype(coll)::value_type elem;
+
+```
+
+#### new function declaration syntax
+
+```c++
+
+template<typename T1, typename T2>
+decltype(x + y) add(T1 x, T2 y);
+
+// or 
+auto add(T1 x, T2 y)->decltype(x + y);
+
+```
