@@ -69,7 +69,7 @@ public:
     // repr
     friend std::ostream& operator<<(std::ostream& os, const Date& d)
     {
-        os << std::setw(4) << std::setfill('0') << d.year << "/"
+        os << std::setw(4) << std::setfill('0') << d.year  << "/"
            << std::setw(2) << std::setfill('0') << d.month << "/"
            << std::setw(2) << std::setfill('0') << d.day;
         return os;

@@ -7,10 +7,13 @@
 #include <cstdlib>
 #include <string>
 #include "date.h"
+#include "time.h"
 
 typedef std::vector<int> VI;
+typedef std::vector<Time> VT;
 typedef std::forward_list<Date> LD;
 typedef LD::const_iterator LDIter;
+typedef VT::const_iterator VTIter;
 
 int main()
 {
@@ -34,9 +37,23 @@ int main()
     {
         std::cout << *dPtr << std::endl;
     }
-    for(int i=0; i<v.size(); ++i)
+    for(unsigned i=0; i<v.size(); ++i)
     {
         std::cout << v[i] << std::endl;
+    }
+
+    // vector
+    VT v1;
+    i = 0;
+    while(i<m)
+    {
+        v1.push_back(Time(std::rand()%25, std::rand()%61, std::rand()%61));
+        ++i;
+    }
+    VTIter vtIt = v1.begin();
+    for(; vtIt != v1.end(); ++vtIt)
+    {
+        std::cout << *vtIt << std::endl;
     }
 
     // class templates: pair, tuple
