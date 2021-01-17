@@ -1,0 +1,30 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+class BigArray // version 0
+{
+    std::vector<int> v;
+    int accessCounter;
+public:
+    const int& operator[](int index) const    // subscript operation like
+    {
+        // accessCounter++;    // not OK. check version 1 to see how enable it
+        return v[index];    // OK. bitwise change
+    }
+
+    int& operator[](int index) const
+    {
+        return v[index];
+    }
+};
+
+
+int main()
+{
+    BigArray ba1;
+    
+
+    return 0;
+}
