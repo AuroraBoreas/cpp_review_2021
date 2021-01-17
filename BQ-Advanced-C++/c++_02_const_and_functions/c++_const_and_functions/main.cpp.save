@@ -1,0 +1,15 @@
+#include <iostream>
+#incl
+using namespace std;
+
+class Dog
+{
+    int age;
+    std:string name;
+};
+
+int main()
+{
+    cout << "Hello world!" << endl;
+    return 0;
+}e

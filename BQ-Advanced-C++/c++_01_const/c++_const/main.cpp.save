@@ -1,0 +1,21 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    // const
+    const int i = 42;
+    // i = 3; // not OK.
+    // keyword const enforces constness in compile time
+    const int *p1 = &i;
+    *p1++; // not OK
+    p1++; // OK
+    
+    const 
+
+    // cast: a hack way
+
+
+    return 0;
+}
