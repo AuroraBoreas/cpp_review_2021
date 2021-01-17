@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1610870539 source:c:\users\aurora_boreas\desktop\bq-advanced-c++\c++_03_rvalue_rvalue\c++_subscript_op_ol\main.cpp
+	<iostream>
+	<vector>
+	<stdexcept>
+
