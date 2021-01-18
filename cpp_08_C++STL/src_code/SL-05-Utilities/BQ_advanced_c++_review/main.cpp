@@ -1,6 +1,8 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <cstdlib>
+#include <cctype>
 
 class BigVector
 {
@@ -81,11 +83,16 @@ public:
     }
 };
 
+void message_error(char*), message(char*),
+     message_up(char*), message_low(char*),
+     (*funcPtr[])(char*) = { message_error, message, message_up, message_low };
+
 
 int main()
 {
     // logic constness and bitwise constness
     {
+        std::cout << std::endl;
         BigVector v1;
         v1[0] = 42;  // write
         std::cout << v1.getCounter() << std::endl;
@@ -96,6 +103,7 @@ int main()
 
     // compiler generated funcs
     {
+        std::cout << std::endl;
         Dog d1; // OK. using default constructor
         Dog d2("Henry", 3); // OK
         Dog d3; // OK as well
@@ -105,6 +113,7 @@ int main()
 
     // constness
     {
+        std::cout << std::endl;
         // V
         int i = 42; // i can be changed w/e
         i = 11; // OK
@@ -128,15 +137,65 @@ int main()
         // Ref
         const int& refk = k;    // alias of k
         std::cout << refk << std::endl;
-
     };
 
     // const with functions
-
     {
         Dog d4;
         std::cout << d4.getName() << std::endl;
     }
 
+    // var interpreting methods
+    {
+        std::cout << std::endl;
+        char prompt[] = "Please enter your choice "
+                        "btwn (1-3), quit with -1: ";
+        char msg[] = "bonjour tout le monde";
+        char err[] = "error out";
+
+        int i;
+        std::cout << prompt << std::endl;
+        while(std::cin >> i && i != -1)
+        {
+            if(i<0 || i>3)
+            {
+                (*funcPtr[0])(err);
+                std::cerr << "index out of range" << std::endl;
+                break;
+            }
+            else
+            {
+                (*funcPtr[i])(msg);
+            }
+            std::cout << prompt << std::endl;
+        }
+    }
+
+
+
     return 0;
+}
+
+void message_error(char* s)
+{
+    std::cerr << s << std::endl; // display error message
+}
+
+void message(char* s)
+{
+    std::cout << s << std::endl;
+}
+
+void message_up(char* s)
+{
+    char c;
+    for(; *s != '\0'; ++s)
+        c = std::toupper(*s); std::cout.put(c);
+}
+
+void message_low(char* s)
+{
+    char c;
+    for(; *s != '\0'; ++s)
+        c = std::tolower(*s); std::cout.put(c);
 }
