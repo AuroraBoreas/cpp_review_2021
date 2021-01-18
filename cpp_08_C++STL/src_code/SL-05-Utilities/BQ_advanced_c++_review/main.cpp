@@ -3,6 +3,9 @@
 #include <string>
 #include <cstdlib>
 #include <cctype>
+#include <tuple>
+#include <utility>
+#include <memory>
 
 class BigVector
 {
@@ -171,7 +174,101 @@ int main()
         }
     }
 
+    // pair
+    {
+        /*
+            pair<> class template
+        - what:
+            binds two elements together, and treats it as one
 
+            ```c++
+            namespace std
+            {
+                template<typename T, typename U>
+                class pair
+                {
+                    ...
+                    // not explicit keyword constrains these constructors.
+                    public:
+                        pair(const T& x, const U& y);
+                        pair& operator=(const pair& p);
+
+                        pair(T&& x, U&& y);
+                        pair&& operator=(T&& x, U&& y);
+                }
+            }
+
+            ```
+
+        - why:
+            two as one
+        - how:
+            using pair<> class constructor;
+            using std::make_pair() function;
+        - extract values from a pair?
+            using std::get<index>(p)
+            using std::make_pair(std::ref(x), std::ref(y)) = p;
+            using std::tie(x, y) = p; // generated Ref x, y automatically
+        */
+
+        std::pair<int, float> p1{42, 3.14};
+        std::cout << std::get<0>(p1) << std::endl; // 42
+        std::cout << std::endl;
+
+        auto p2 = std::make_pair<char, std::string>('c', "hello world!");
+        char c; std::string s;
+        std::make_pair(std::ref(c), std::ref(s)) = p2;
+        std::cout << c << ", " << s << std::endl;
+        std::tie(c, s) = p2;
+        std::cout << c << ", " << s << std::endl;
+
+    }
+
+    // tuple
+    {
+        /*
+            tuple
+        - what:
+            tuple is an extended concept of pair<> class template.
+
+            ```c++
+            namespace std
+            {
+                template<typename... Args>
+                class tuple
+                {
+                    ...
+
+                    // explicit keyword constrains constructor. implicit conversion included initializer_list is not allowed
+                    public:
+                        explicit tuple(const Args&...);
+                        explicit tuple(Args&&...);
+                }
+
+            }
+
+            ```
+        - why:
+            why not?
+        - how:
+            similar with pair<> class template,
+            using std::tuple<T>();
+            using std::make_tuple<T>();
+        - how to extract values from a tuple
+            same as pair<> class template,
+        - additional methods
+            using std::tuple_element<tupletype>::value to get size;
+            using std::tuple_element<index, tupletype>::type to get type;
+            using std::tuple_cat() to combine;
+
+        */
+
+        std::tuple<char, short, int, long, float, double, std::string> t1{ 'a', 11, 42, 999L, 3.14f, 2.718281828, "hello" };
+        auto t2 = std::tuple_cat(std::make_pair(42, 3.14),
+                       std::make_tuple(2.718, "hello world"));
+
+
+    }
 
     return 0;
 }
