@@ -266,9 +266,39 @@ int main()
         std::tuple<char, short, int, long, float, double, std::string> t1{ 'a', 11, 42, 999L, 3.14f, 2.718281828, "hello" };
         auto t2 = std::tuple_cat(std::make_pair(42, 3.14),
                        std::make_tuple(2.718, "hello world"));
+    }
+
+    // smart pointers
+    {
+        /*
+            smart pointers
+        - shared_ptr
+            what: auto track all pointers to the same obj;
+                  auto delete when no one point to the same obj any more;
+            ownership: many to one
+
+            - weak_ptr, bad_weak_ptr etc are also provided
+
+        - unique_ptr
+            what: exact one and only one pointer to an obj
+            ownership: one to one
+
+        - comparing with "raw" pointers
+
+
+        */
+        int i = 42;
+        // shared_ptr<int*> p(new obj());
+        std::shared_ptr<int> p1(new int(42));
+        std::shared_ptr<int> p2(new int(11));
+
+        //
+        std::cout << *p1 << std::endl;
 
 
     }
+
+
 
     return 0;
 }
