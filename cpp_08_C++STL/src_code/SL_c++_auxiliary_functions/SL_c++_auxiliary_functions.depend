@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1611745697 source:d:\reference_01_code\c++\cpp_08_c++stl\src_code\sl-05-utilities\sl_c++_auxiliary_functions\main.cpp
+	<iostream>
+	<algorithm>
+	<string>
+	<memory>
+
