@@ -1,7 +1,25 @@
 # depslib dependency file v1.0
-1611745697 source:d:\reference_01_code\c++\cpp_08_c++stl\src_code\sl-05-utilities\sl_c++_auxiliary_functions\main.cpp
+1611881770 source:d:\reference_01_code\c++\cpp_08_c++stl\src_code\sl-05-utilities\sl_c++_auxiliary_functions\main.cpp
 	<iostream>
 	<algorithm>
 	<string>
 	<memory>
+	<tuple>
+	"car.h"
+	"animal.h"
+	"dog.h"
+
+1611813080 d:\reference_01_code\c++\cpp_08_c++stl\src_code\sl-05-utilities\sl_c++_auxiliary_functions\car.h
+	<string>
+	<iostream>
+
+1611820982 d:\reference_01_code\c++\cpp_08_c++stl\src_code\sl-05-utilities\sl_c++_auxiliary_functions\animal.h
+	<iostream>
+
+1611882031 d:\reference_01_code\c++\cpp_08_c++stl\src_code\sl-05-utilities\sl_c++_auxiliary_functions\dog.h
+	<string>
+
+1611881746 source:d:\reference_01_code\c++\cpp_08_c++stl\src_code\sl-05-utilities\sl_c++_auxiliary_functions\dog.cpp
+	"dog.h"
+	<iostream>
 

@@ -13,6 +13,7 @@ P134
 #include <tuple>
 #include "car.h"
 #include "animal.h"
+#include "dog.h"
 
 using namespace std;
 
@@ -329,6 +330,19 @@ int main()
         std::cout << a1.GetCounter() << std::endl;
         std::cout << a2.GetCounter() << std::endl;
         std::cout << a3.GetCounter() << std::endl;
+
+    }
+
+    // const data member?
+    {
+        Dog d1 = Dog(3); // can be compiled?
+
+        d1.display();
+        // cls-lvD:\Reference_01_code\C++\cpp_08_C++STL\src_code\SL-05-Utilities\SL_c++_auxiliary_functions\car.hl access?
+//        std::cout << Dog.m_name << std::endl; // ofc NOT OK
+        std::cout << d1.m_name << std::endl;  // obj-lvl OK
+        // changeable?
+//        d1.m_name = "SCY";  // not OK
 
     }
 
