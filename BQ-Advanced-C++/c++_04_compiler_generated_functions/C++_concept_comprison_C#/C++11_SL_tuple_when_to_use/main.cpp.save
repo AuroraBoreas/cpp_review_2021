@@ -1,0 +1,30 @@
+#include <iostream>
+#include <tuple>
+#include <string>
+
+struct Person { std::string name; int age; } p;
+std::tuple<std::string, int> t;
+
+std::tuple<std::string, int> GetNameAge(void)
+{
+    return std::make_tuple("ZL", 34);
+}
+
+int main()
+{
+    // test
+    {
+        std::cout << p.name         << ", " << p.age          << std::endl;
+        std::cout << std::get<0>(t) << ", " << std::get<1>(t) << std::endl;
+    }
+
+    // when to use
+    {
+        //
+        std::tuple<std::string, int> t1 = GetNameAge();
+        std::cout << std::get<0>(t1) << ", " << std::get<1>(t1) << std::endl;
+    }
+
+
+    return 0;
+}

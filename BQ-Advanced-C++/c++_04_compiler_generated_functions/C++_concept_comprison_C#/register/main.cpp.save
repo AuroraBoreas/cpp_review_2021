@@ -1,0 +1,37 @@
+#include <iostream>
+#include <cstdlib>
+#include <stdexcept>
+
+void message(char*), message_up(char*), message_low(char*), message_error(char*);
+
+typedef (*CallBack[])(char*);
+
+
+int main()
+{
+    CallBack cb = { message, message_error, message_up, message_low };
+    
+    cb[0]()
+    
+    return 0;
+}
+
+void message(char* s)
+{ std::cout << s << std::endl; }
+
+void message_up(char* s)
+{
+    char c;
+    for(; *s != '\0'; ++s)
+        c = std::toupper(*s); std::cout.put(c);
+}
+
+void message_up(char* s)
+{
+    char c;
+    for(; *s != '\0'; ++s)
+        c = std::tolower(*s); std::cout.put(c);
+}
+
+void message_error(char* s)
+{ std::cerr << s << std::endl; }

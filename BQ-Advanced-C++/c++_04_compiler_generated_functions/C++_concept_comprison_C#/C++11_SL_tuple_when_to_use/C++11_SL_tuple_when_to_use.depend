@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1612939079 source:c:\users\aurora_boreas\desktop\bq-advanced-c++\c++_04_compiler_generated_functions\c++_concept_comprison_c#\c++11_sl_tuple_when_to_use\main.cpp
+	<iostream>
+	<tuple>
+	<string>
+

@@ -1,0 +1,41 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    // cast
+    {
+      /*
+
+      + concept
+        - cast or type conversion is a basis of language
+        - it enables conversion btwn different types(primitive types or even user-defined-type, like cls, struct)
+        - why: to simulate stuff in real life..
+          for example:
+            int a = 3; float b = 3.14;
+            a + b = ?;
+            a < b ?;
+            ...;
+        w/o unifying types of a and b, we dont know how to do these operations.
+        irl, we do "type conversion" subconsciously
+        for example:
+            a = 3.00;   // convert a from int to float with 2 bit precison
+            // then
+            a + b = 3.00 + 3.14 = 6.14;
+            a < b = 3.00 < 3.14 = true;
+            ...;
+        we need a standard or protocol to do type conversion over universe
+    
+      + mechanism
+        - (C-style)var;
+        - dynamic_cast<T>(var); // for pointers only
+        - static_cast<T>
+
+      */
+
+
+
+    }
+    return 0;
+}
