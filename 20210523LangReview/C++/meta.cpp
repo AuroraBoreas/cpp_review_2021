@@ -1,3 +1,9 @@
+/*
+C++, meta review
+
+@ZL, 20210523
+
+*/ 
 #include "meta.h" 
 
 namespace VarNS
@@ -16,19 +22,21 @@ namespace VarNS
     template<class T>
     T pi = 3.1415926831319123120312192839128312;
 
-    const int i = 69;
-    int j = 42;
+    inline void const_correctness(void)
+    {
+        const int i = 69;
+        int j = 42;
 
-    const int* ptr1 = &i;
-    int const *ptr2 = &i;
+        const int* ptr1 = &i;
+        int const *ptr2 = &i;
 
-    int* const ptr3 = &j;
-    const int* const ptr4 = &i;
+        int* const ptr3 = &j;
+        const int* const ptr4 = &i;
 
-    // ! exception: const T& var_name can accept rvalue
-    const int& k = 69;
+        // ! exception: const T& var_name can accept rvalue
+        const int& k = 69;
+    }
 
-    
 } // namespace VarNS
 
 namespace FuncNS
@@ -298,13 +306,6 @@ namespace ControlflowNS
 
 namespace LoopNS
 {
-    inline void std_foreach(const std::list<int>& mylist)
-    {
-        std::for_each(mylist.begin(), mylist.end(), [](auto x){
-            std::cout << x << ' ';
-        });
-        std::cout << std::endl;
-    }
 
     inline void array_notation()
     {
@@ -710,34 +711,135 @@ namespace DataStructureNS
     {
         std::cout << "\n--- std::unordered_map ---" << std::endl;
 
+        std::unordered_map<std::string, std::string> u = {
+            {"RED", "#FF0000"},
+            {"GREEN", "#00FF00"},
+            {"BLUE", "#0000FF"},
+        };
+
+        for(const auto& n: u)
+        {
+            std::cout << "key: [" << n.first << "] value: [" << n.second << "]\n";
+        }
     }
 
     inline void std_unordered_multimap(void) noexcept
     {
         std::cout << "\n--- std::unordered_multimap ---" << std::endl;
+        std::unordered_multimap<std::string, std::string> umm;
+        umm.emplace(std::make_pair<std::string, std::string>("a", "a"));
+        umm.emplace(std::make_pair("b", "abcd"));
+        umm.emplace("d", "d");
 
+        for(const auto& [key, val] : umm)
+        {
+            std::cout << key << " : " << val << std::endl; 
+        }
     }
 
     inline void std_unordered_set(void) noexcept
     {
         std::cout << "\n--- std::unordered_set ---" << std::endl;
+        std::unordered_set<int> us = { 14, 1, 2, 13 };
+        us.insert(25);
+        us.insert(11);
 
+        for(const auto& elem : us)
+        {
+            std::cout << elem << std::endl;
+        }
     }
 
-    inline void std_unorder_multiset(void) noexcept
+    inline void std_unordered_multiset(void) noexcept
     {
         std::cout << "\n--- std::unorder_multiset ---" << std::endl;
+        std::unordered_multiset<int> numbers;
+        numbers.insert(42);
+        numbers.insert(69);
 
+        for(const auto& elem: numbers)
+        {
+            std::cout << elem << std::endl;
+        }
     }
 
 } // namespace DataStructureNS
 
 namespace AlgorithmNS
 {
-    
+    inline void std_foreach(const std::list<int>& mylist)
+    {
+        std::for_each(mylist.begin(), mylist.end(), [](auto x){
+            std::cout << x << ' ';
+        });
+        std::cout << std::endl;
+    }
+
+    inline void std_iterator_helper_function(void) noexcept
+    {
+        std::cout << "\n--- std::advance ---\n";
+        std::forward_list<int> col1 = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+        auto it1 = col1.begin();
+        std::advance(it1, 4);
+        std::cout << *it1 << std::endl;
+
+        std::cout << "\n--- std::next ---\n";
+        std::vector<int> col2 = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+        auto it2 = col2.begin();
+        auto it3 = std::next(it2, 4);
+        std::cout << *it3 << std::endl;
+
+        std::cout << "\n--- std::prev ---\n";
+        std::list<int> col3 {1, 2, 3, 4, 5, 6, 7, 8, 9};
+        auto it4 = col3.end();
+        auto it5 = std::prev(it4, 4);
+        std::cout << *it5 << std::endl;
+
+        std::cout << "\n--- std::distance ---\n";
+        std::array<int, 9> col4 {1, 2, 3, 4, 5, 6, 7, 8, 9};
+        auto it6 = col4.begin();
+        auto it7 = col4.end();
+        std::cout << std::distance(it6, it7) << std::endl;
+
+    }
+
+    inline void std_iterator_adaptor(void) noexcept
+    {
+        std::cout << "\n--- std::istream_iterator ---\n";
+        std::cout << "input some numbers(press non-numbers to stop) : ";
+
+        std::vector<int> col2;
+        std::istream_iterator<int> eos;
+        std::istream_iterator<int> cin_it(std::cin);
+        // for(; cin_it != eos; ++cin_it)
+        // { col2.push_back(*cin_it); }
+
+        auto back_iter = std::back_inserter(col2);
+        std::copy(cin_it, eos, back_iter);
+
+        std::cout << "\n--- std::ostream_iterator ---\n";
+        std::ostream_iterator<int> cout_it(std::cout, " ");
+        for(const int& n : col2)
+            *cout_it = n;
+        std::cout << std::endl;
+
+        std::copy(col2.rbegin(), col2.rend(), cout_it);        
+    }
+
+    inline void std_heap(void)
+    {
+        std::vector<int> data = { 1, 2, 3, 4, 5, 6, 7, 8 };
+        std::cout << "before make_heap, data : ";
+        for(const auto& d:data) { std::cout << d << ' '; }
+        std::cout << std::endl;
+        std::make_heap(data.begin(), data.end());
+        std::cout << "after make_heap, data : ";
+        for(const auto& d:data) { std::cout << d << ' '; }
+        std::cout << std::endl;
+    }
 } // namespace AlgorithmNS
 
-void variableDemo(void)
+void meta_review::variableDemo(void)
 {
     /*
     @ variable
@@ -790,6 +892,9 @@ void variableDemo(void)
             $ storage
                 ~ static
                 ~ const
+                    % const and variable
+                    % const and pointer
+                    % const and function
                 ~ extern
                 ~ register
                 ~ auto
@@ -822,7 +927,7 @@ void variableDemo(void)
 
 }
 
-void functionDemo(void)
+void meta_review::functionDemo(void)
 {
     /*
     @ function
@@ -907,7 +1012,7 @@ void functionDemo(void)
 
 }
 
-void statementDemo(void)
+void meta_review::statementDemo(void)
 {
     /*
     @ statement
@@ -979,7 +1084,7 @@ void statementDemo(void)
     StatementNS::opforother();
 }
 
-void controlflowDemo(void)
+void meta_review::controlflowDemo(void)
 {
     /*
     @ controlflow
@@ -999,7 +1104,7 @@ void controlflowDemo(void)
     ControlflowNS::zeroDivision(10, 0);
 }
 
-void loopDemo(void)
+void meta_review::loopDemo(void)
 {
     /*
     @ loop
@@ -1015,14 +1120,12 @@ void loopDemo(void)
     
     */ 
 
-    std::list<int> numbers { 1, 2, 3, 4, 5, 6, 7, 8 };
-    LoopNS::std_foreach(numbers);
     LoopNS::array_notation();
     LoopNS::whileloop();
 
 }
 
-void classDemo(void)
+void meta_review::classDemo(void)
 {
     /*
     @ class
@@ -1097,7 +1200,7 @@ void classDemo(void)
     std::cout << std::boolalpha << (s1 == s2) << std::endl;
 }
 
-void datastructureDemo(void)
+void meta_review::datastructureDemo(void)
 {
     /*
     @ datastructure
@@ -1146,19 +1249,41 @@ void datastructureDemo(void)
     DataStructureNS::std_set();
     DataStructureNS::std_multiset();
 
+    DataStructureNS::std_unordered_map();
+    DataStructureNS::std_unordered_multimap();
+    DataStructureNS::std_unordered_set();
+    DataStructureNS::std_unordered_multiset();
 }
 
-void algorithmDemo(void)
+void meta_review::algorithmDemo(void)
 {
     /*
     @ algorithm
     ===
     * concept: calculation methods
-    * pattern: map
+    * pattern: world map of STL algorithm
     * feature:
         - permutation
         - queries
+            ^ value queries
+                $ count
+                $ transform_inclusive_scan
+                $ transform_exclusive_scan
+                $ inclusive_scan
+                $ exclusive_scan
+
+            ^ property queries
+            ^ search
+            ^ 2-ranges properties
+
         - secrete runes
+            $ _N
+            $ _IF
+            $ _COPY
+            $ stable_
+            $ is_
+            $ is_*_until
+
         - movers
         - lone island
         - raw memory 
@@ -1166,5 +1291,11 @@ void algorithmDemo(void)
         - structure changer
     ===
     */
+    
+    std::list<int> numbers { 1, 2, 3, 4, 5, 6, 7, 8 };
+    AlgorithmNS::std_foreach(numbers);
+    AlgorithmNS::std_iterator_helper_function();
+    AlgorithmNS::std_iterator_adaptor();
+    AlgorithmNS::std_heap();
 
 }

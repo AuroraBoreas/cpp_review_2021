@@ -1,3 +1,9 @@
+/*
+C++, meta review
+
+@ZL, 20210523
+
+*/ 
 #include <iostream>
 #include <iomanip>
 #include <ctime>
@@ -23,11 +29,14 @@
 #include <iterator>
 #include <functional>
 
-void variableDemo(void);
-void functionDemo(void);
-void statementDemo(void);
-void controlflowDemo(void);
-void loopDemo(void);
-void classDemo(void);
-void datastructureDemo(void);
-void algorithmDemo(void);
+namespace meta_review
+{
+    void variableDemo(void);
+    void functionDemo(void);
+    void statementDemo(void);
+    void controlflowDemo(void);
+    void loopDemo(void);
+    void classDemo(void);
+    void datastructureDemo(void);
+    void algorithmDemo(void);
+}
