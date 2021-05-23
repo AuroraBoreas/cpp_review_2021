@@ -1277,11 +1277,11 @@ void meta_review::algorithmDemo(void)
             ^ 2-ranges properties
 
         - secrete runes
-            $ _N
-            $ _IF
-            $ _COPY
-            $ stable_
-            $ is_
+            $ *_n
+            $ *_if
+            $ *_copy
+            $ stable_*
+            $ is_*
             $ is_*_until
 
         - movers
