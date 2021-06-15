@@ -1,0 +1,18 @@
+# depslib dependency file v1.0
+1623744304 source:c:\users\5106001995\desktop\git\20210523langreview\c++\iterator_adapter\iterator_adaptor\main.cpp
+	"iter.h"
+
+1623744181 c:\users\5106001995\desktop\git\20210523langreview\c++\iterator_adapter\iterator_adaptor\iter.h
+	<string>
+	<ctime>
+	<random>
+	<list>
+	<vector>
+	<functional>
+	<iostream>
+	<iterator>
+	<algorithm>
+
+1623744277 source:c:\users\5106001995\desktop\git\20210523langreview\c++\iterator_adapter\iterator_adaptor\iter.cpp
+	"iter.h"
+
