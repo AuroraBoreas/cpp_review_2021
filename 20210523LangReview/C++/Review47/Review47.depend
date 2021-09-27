@@ -1,0 +1,26 @@
+# depslib dependency file v1.0
+1632704778 source:c:\users\5106001995\desktop\git\c++_megareview\review47\algo.cpp
+	"algo.h"
+
+1632441793 source:c:\users\5106001995\desktop\git\c++_megareview\review47\main.cpp
+	"algo.h"
+
+1632704832 c:\users\5106001995\desktop\git\c++_megareview\review47\algo.h
+	<iostream>
+	<iomanip>
+	<sstream>
+	<string>
+	<cctype>
+	<ctime>
+	<chrono>
+	<cstdlib>
+	<cstddef>
+	<random>
+	<thread>
+	<vector>
+	<list>
+	<set>
+	<iterator>
+	<numeric>
+	<algorithm>
+
