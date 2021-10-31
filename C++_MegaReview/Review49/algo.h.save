@@ -1,0 +1,9 @@
+#ifndef ALGO_H_INCLUDED
+#define ALGO_H_INCLUDED
+
+namespace TS
+{
+    inline void newline(voi)
+}; // namespace TS
+
+#endif // ALGO_H_INCLUDED

@@ -1,0 +1,69 @@
+#include "algo.h"
+
+typedef void (*func_ptr)(char* s);
+
+void print_msg(char*);
+
+class Visitor;
+class Graphic;
+
+class Graphic
+{
+public:
+    template<class T>
+    void accept(const T& v);
+};
+
+template<class T>
+class Shape: public Graphic<T>
+{
+public:
+    void accept(const T& v)
+    {
+        v.visit(this);
+    }
+};
+
+class Dot: public Graphic<T>
+{
+public:
+    void accept(const T& v)
+    {
+        v.visit(this);
+    }
+};
+
+class Visitor
+{
+public:
+    void visit(const Shape& s) const
+    {
+        std::cout << "Visited shape" << std::endl;
+    }
+    void visit(const Dot& d) const
+    {
+        std::cout << "Visited dot" << std::endl;
+    }
+};
+
+
+int main()
+{
+    std::cout << "typedef(C++) vs delegate(C#)" << std::endl;
+
+    func_ptr fp = print_msg;
+
+    char msg[] = "hello world";
+    fp(msg);
+
+    Visitor v = Visitor();
+    Graphic g = Dot();
+    g.accept<Visitor>(v);
+
+    return 0;
+}
+
+void print_msg(char* s)
+{
+    std::cout << s << std::endl;
+}

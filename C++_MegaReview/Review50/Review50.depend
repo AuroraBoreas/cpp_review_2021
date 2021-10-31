@@ -1,0 +1,17 @@
+# depslib dependency file v1.0
+1635683385 source:c:\users\aurora_boreas\desktop\c++_megareview\review50\a.cpp
+	"A.h"
+
+1635683191 c:\users\aurora_boreas\desktop\c++_megareview\review50\a.h
+	"B.h"
+
+1635683382 c:\users\aurora_boreas\desktop\c++_megareview\review50\b.h
+	<iostream>
+
+1635683502 source:c:\users\aurora_boreas\desktop\c++_megareview\review50\b.cpp
+	"B.h"
+	"A.h"
+
+1635683493 source:c:\users\aurora_boreas\desktop\c++_megareview\review50\main.cpp
+	"A.h"
+

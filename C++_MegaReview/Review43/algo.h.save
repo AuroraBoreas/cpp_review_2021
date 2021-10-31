@@ -1,0 +1,26 @@
+#ifndef ALGO_H_INCLUDED
+#define ALGO_H_INCLUDED
+
+#include <iostream>
+#include <iomanip>
+#include <string>
+#include <sstream>
+#include <cctype>
+#include <ctime>
+#include <cstdlib>
+#include <cstddef>
+#include <random>
+#include <thread>
+#include <vector>
+#include <list>
+#include <set>
+#include <iterator>
+#include <algorithm>
+#include <nume
+
+namespace TS
+{
+
+} // namespace TS
+
+#endif // ALGO_H_INCLUDED
