@@ -1,0 +1,42 @@
+# depslib dependency file v1.0
+1636787706 source:c:\users\aurora_boreas\desktop\c++_megareview\review54\main.cpp
+	"algo.h"
+	"graphic.h"
+	"visitor.h"
+
+1636785253 c:\users\aurora_boreas\desktop\c++_megareview\review54\algo.h
+	<iostream>
+	<iomanip>
+	<sstream>
+	<string>
+	<cctype>
+	<ctime>
+	<chrono>
+	<cstddef>
+	<cstdlib>
+	<random>
+	<thread>
+	<functional>
+	<iterator>
+	<numeric>
+	<algorithm>
+	<vector>
+	<list>
+	<set>
+
+1636785076 source:c:\users\aurora_boreas\desktop\c++_megareview\review54\algo.cpp
+	"algo.h"
+
+1636787754 source:c:\users\aurora_boreas\desktop\c++_megareview\review54\graphic.cpp
+	"graphic.h"
+
+1636787746 c:\users\aurora_boreas\desktop\c++_megareview\review54\graphic.h
+	"visitor.h"
+
+1636787762 c:\users\aurora_boreas\desktop\c++_megareview\review54\visitor.h
+	<iostream>
+
+1636787769 source:c:\users\aurora_boreas\desktop\c++_megareview\review54\visitor.cpp
+	"visitor.h"
+	"graphic.h"
+

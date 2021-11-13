@@ -1,0 +1,10 @@
+#pragma once
+#include "visitor.h"
+
+class Graphic
+{
+public:
+    void accept(const Visitor& v) const = 0;
+};
+
+class Square: public 
