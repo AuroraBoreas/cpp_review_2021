@@ -1,0 +1,42 @@
+#include <iostream>
+#include <cctype>
+#include <functional>
+#include <algorithm>
+#include <vector>
+#include <iterator>
+
+
+#include "graphic.h"
+#include "visitor.h"
+
+typedef void (*func_ptr)(std::vector<char>);
+void print_msg(std::vector<char>);
+
+int main()
+{
+//    std::cout << "Hello world!" << std::endl;
+//
+//    func_ptr fp = print_msg;
+//    std::vector<char> s{'z', 'l', '\n'};
+//    fp(s);
+//
+//    std::function<void(std::vector<char>)> f = print_msg;
+//    f(s);
+
+    Shape s = Shape();
+    Dot d = Dot();
+    Graphic* g;
+    g = &s;
+    g.accept()
+
+    std::cin.get();
+
+    return 0;
+}
+
+void print_msg(std::vector<char> s)
+{
+    std::transform(s.begin(), s.end(),
+                   std::ostream_iterator<char>(std::cout, "\n"),
+                   [](char const& e){ return std::toupper(e); });
+}

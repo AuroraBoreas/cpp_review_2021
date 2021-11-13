@@ -1,0 +1,28 @@
+#pragma once
+#ifndef ALGO_H_INCLUDED
+#define ALGO_H_INCLUDED
+
+namespace TS
+{
+    inline void newline(void)
+    {
+        std::cout << std::endl;
+    }
+
+    inline void otopic(const std::string& s)
+    {
+        std::cout << "\n=== " << s << " ===\n";
+    }
+
+    int const w{35};
+    const char b{' '};
+    
+    auto oformat = [&](const std::string& s, auto const& v){
+        std::cout << s;
+        for(auto& e : v) std::cout << e << TS::b;
+    };
+
+
+}
+
+#endif // ALGO_H_INCLUDED
