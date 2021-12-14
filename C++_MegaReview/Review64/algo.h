@@ -7,19 +7,19 @@
 #include <sstream>
 #include <string>
 #include <cctype>
-#include <ctime>
 #include <cstdlib>
 #include <cstddef>
+#include <ctime>
 #include <chrono>
 #include <random>
 #include <thread>
-#include <numeric>
-#include <vector>
 #include <list>
+#include <vector>
 #include <set>
 #include <iterator>
-#include <algorithm>
+#include <numeric>
 #include <functional>
+#include <algorithm>
 
 namespace cy
 {
@@ -29,11 +29,18 @@ namespace cy
     inline void otopic(const std::string& s)
     { std::cout << "\n=== " << s << " ===" << std::endl; }
 
-    const int w{35};
-    char const b(' ');
+    int const w{35};
+    const char b(' ');
 
     inline void oformat(const std::string& s)
     { std::cout << std::setw(cy::w) << std::setfill(cy::b) << s; }
+
+    inline void func(const int& e)
+    {
+        std::this_thread::sleep_for(std::chrono::seconds(e));
+        cy::oformat("thread ");
+        std::cout << e << " ended" << std::endl;
+    }
 
     auto print = [](const std::string& s, auto const& v){
         cy::oformat(s);
@@ -48,18 +55,11 @@ namespace cy
         { return e%2 == 0; }
     }; // class IsEven
 
-    inline void func(const int& e)
-    {
-        std::this_thread::sleep_for(std::chrono::seconds(e));
-        cy::oformat("thread ");
-        std::cout << e << " ended;" << std::endl;
-    }
-
     void algo_permutation_heap(void);
     void algo_permutation_sort(void);
     void algo_structure_changer(void);
     void algo_mover(void);
-    void algo_value_modifier(void);
+    void algo_value_modifiery(void);
     void algo_set(void);
     void algo_query_value(void);
     void algo_query_property(void);
